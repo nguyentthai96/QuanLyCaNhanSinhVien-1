@@ -54,7 +54,8 @@ namespace WFAQuanLyCaNhanSinhVien
                 tmiDangNhap.Select();
             }
         }
-       
+
+        FTongQuan frmTongQuan;
         private void tmiDangNhap_Click(object sender, EventArgs e)
         {
            sv= new CAccountSinhVien_BLL().loadAccountSV(ttxtTaiKhoan.Text, ttxtMatKhau.Text);
@@ -63,15 +64,21 @@ namespace WFAQuanLyCaNhanSinhVien
                 MessageBox.Show("Đăng nhập thất bại.");
                 return;
             }
-            frm.Dispose();
+            frmEmpty.Dispose();
             lblTenSV.Text = sv.StrHoTen;
             lblTenSV.Location=new Point(this.Size.Width-75- lblTenSV.Width,lblTenSV.Location.Y);
-            FTongQuan tq = new FTongQuan(sv.StrMaSV);
-            tq.MdiParent = this;
-            tq.Show();
+            frmTongQuan = new FTongQuan(sv.StrMaSV);
+            frmTongQuan.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            frmTongQuan.WindowState = FormWindowState.Maximized;
+            frmTongQuan.MdiParent = this;
+            frmTongQuan.Show();
+
+            frmEmpty.Close();
             tmiDangNhap.Visible = false;
             ttxtMatKhau.Visible = false;
             ttxtTaiKhoan.Visible = false;
+            tmiDangXuatTongQuan.Visible = true;
+            lblTenSV.Visible = true;
         }
 
         private void lblTenSV_Click(object sender, EventArgs e)
@@ -85,35 +92,39 @@ namespace WFAQuanLyCaNhanSinhVien
             ttxtTaiKhoan.SelectAll();
         }
 
-        Form frm;
+        Form frmEmpty;
         Label lblChaoMung;
         private void FMainForm_Load(object sender, EventArgs e)
         {
-            frm = new Form();
-            frm.WindowState = FormWindowState.Maximized;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.MdiParent = this;
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.Show();
+            frmEmpty = new Form();
+            frmEmpty.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            frmEmpty.WindowState = FormWindowState.Maximized;
+            frmEmpty.MdiParent = this;
+            frmEmpty.StartPosition = FormStartPosition.CenterParent;
+            frmEmpty.Show();
+
 
             lblChaoMung = new Label();
             lblChaoMung.Text = "Bạn phải đăng nhập để thao tác với phần mềm.";
             lblChaoMung.Font = new Font("", 40, FontStyle.Bold, GraphicsUnit.Point);
             lblChaoMung.AutoSize = false;
-            lblChaoMung.Size = frm.Size;
+            lblChaoMung.Size = frmEmpty.Size;
             lblChaoMung.ForeColor = Color.Green;
             lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
-            frm.Controls.Add(lblChaoMung);
+            frmEmpty.Controls.Add(lblChaoMung);
 
-           // ttxtTaiKhoan.Text = "14110182";
-           // ttxtMatKhau.Text = "ntt";
-            tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+
+            tmiDangXuatTongQuan.Visible = false;
+            ///TODO Thu dang nhap nhanh
+            //ttxtTaiKhoan.Text = "14110182";
+            //ttxtMatKhau.Text = "ntt";
+            //tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
         }
 
         private void FMainForm_SizeChanged(object sender, EventArgs e)
         {
             lblTenSV.Location = new Point(this.Size.Width - 75 - lblTenSV.Width, lblTenSV.Location.Y);
-            lblChaoMung.Size = frm.Size;
+            lblChaoMung.Size = frmEmpty.Size;
         }
 
         private void sửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,9 +139,25 @@ namespace WFAQuanLyCaNhanSinhVien
         private void tmiDiemSoHT_Click(object sender, EventArgs e)
         {
             FXemDiem frmDiem = new FXemDiem(sv.StrMaSV);
+            frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            frmDiem.WindowState = FormWindowState.Maximized;
             frmDiem.MdiParent = this;
             frmDiem.StartPosition = FormStartPosition.CenterParent;
             frmDiem.Show();
+        }
+
+        private void tmiThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tmiDangCuatTongQuan_Click(object sender, EventArgs e)
+        {
+            tmiDangXuatTongQuan.Visible = false;
+            tmiDangNhap.Visible = true;
+            ttxtMatKhau.Visible = true;
+            ttxtTaiKhoan.Visible = true;
+            lblTenSV.Visible = false;
         }
     }
 }
