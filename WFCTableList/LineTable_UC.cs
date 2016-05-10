@@ -81,7 +81,6 @@ namespace WFCTableList
             this.pnlThongTin.Controls.Add(lblLineVertical);
             return lblLineVertical;
         }
-        //TODO Hay là do lỗi của cái class
         public class SuKien
         {
             private Color colorSuKien;
