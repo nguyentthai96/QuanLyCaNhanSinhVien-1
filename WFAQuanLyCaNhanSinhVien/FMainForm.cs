@@ -116,9 +116,9 @@ namespace WFAQuanLyCaNhanSinhVien
 
             tmiDangXuatTongQuan.Visible = false;
             ///TODO Thu dang nhap nhanh
-            //ttxtTaiKhoan.Text = "14110182";
-            //ttxtMatKhau.Text = "ntt";
-            //tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+            ttxtTaiKhoan.Text = "14110182";
+            ttxtMatKhau.Text = "ntt";
+            tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
         }
 
         private void FMainForm_SizeChanged(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace QuanLyCaNhanSinhVien_DTO
         private DateTime dtmGioBD;
         private DateTime dtmGioKT;
         private string strGhiChuHD;
-
+        private int iMauMucDo;
         public CHoatDong_DTO(string strMaHD, string strMaMon, bool bChinhKhoa, int iTiet, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChuHD)
         {
             this.strMaHD = strMaHD;
@@ -25,6 +26,17 @@ namespace QuanLyCaNhanSinhVien_DTO
             this.dtmGioBD = dtmGioBD;
             this.dtmGioKT = dtmGioKT;
             this.strGhiChuHD = strGhiChuHD;
+        }
+        public CHoatDong_DTO(string strMaHD, string strMaMon, bool bChinhKhoa, int iTiet, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChuHD, int iMucDoMau)
+        {
+            this.strMaHD = strMaHD;
+            this.strMaMon = strMaMon;
+            this.bChinhKhoa = bChinhKhoa;
+            this.iTiet = iTiet;
+            this.dtmGioBD = dtmGioBD;
+            this.dtmGioKT = dtmGioKT;
+            this.strGhiChuHD = strGhiChuHD;
+            this.iMauMucDo = iMucDoMau;
         }
         public string StrMaHD
         {
@@ -114,6 +126,19 @@ namespace QuanLyCaNhanSinhVien_DTO
             set
             {
                 this.strGhiChuHD = value;
+            }
+        }
+
+        public Color ClorMauMucDo
+        {
+            get
+            {
+                return Color.FromArgb(iMauMucDo) ;
+            }
+
+            set
+            {
+                this.iMauMucDo =value.ToArgb();
             }
         }
     }

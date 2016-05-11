@@ -62,7 +62,7 @@ namespace QuanLyCaNhanSinhVien_DAL
             foreach (DataRow dr in dtb.Rows)
             {
                 CHoatDong_DTO hd = new CHoatDong_DTO(dr["MaHD"].ToString(), dr["MaMon"].ToString(), bool.Parse(dr["ChinhKhoa"].ToString()),
-                        int.Parse(dr["Tiet"].ToString()), DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString());
+                        int.Parse(dr["Tiet"].ToString()), DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString(), int.Parse(dr["MauMucDo"].ToString()==""?"0":dr["MauMucDo"].ToString()));
                 lists.Add(hd);
             }
 

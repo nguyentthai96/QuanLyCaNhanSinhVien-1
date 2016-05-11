@@ -18,29 +18,30 @@ namespace WFAQuanLyCaNhanSinhVien
         private string[,] arrStrThongTinLH = new string[2,5];
         public FTongQuan(string strMaSV)
         {
+            loadLichHocTrongNgay();
+           // listSuKienUC = new List<SuKien>();
             InitializeComponent();
+           //Todo linesTableUC.Lists = listSuKienUC;
             creatLineVertical(70, 32);
-           
             this.strMaSV = strMaSV;
         }
 
         private void FTongQuan_SizeChanged(object sender, EventArgs e)
         {
             pnlCacSuKien.Location = new Point(this.Width / 2 - pnlCacSuKien.Width - 31 , pnlCacSuKien.Location.Y);
-            pnlThongTin.Location = new Point(this.Width / 2 + 30, pnlThongTin.Location.Y);
+            //Todo  linesTableUC.Location = new Point(this.Width / 2 + 30, linesTableUC.Location.Y);
             lblChaoMung.Width = this.Width;
             btnThemSuKien.Location = new Point(pnlCacSuKien.Location.X, btnThemSuKien.Location.Y);
         }
 
         List<CHoatDong_DTO> suKiens;
         List<CHoatDong_DTO> lichHocs;
+        //Todo List<SuKien> listSuKienUC;
         int indexSuKien = 0;
-        private void loadLichHoc()
+        private void loadSuKienGhiChu()
         {
             suKiens = new List<CHoatDong_DTO>();
-            lichHocs = new List<CHoatDong_DTO>();
             suKiens = new CHoatDong_BLL().loadSuKienTrongNgay();
-            lichHocs= new CHoatDong_BLL().loadLichHocTrongNgay();
             lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
                        + suKiens[indexSuKien].DtmGioKT.ToShortTimeString();
             lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
@@ -48,21 +49,37 @@ namespace WFAQuanLyCaNhanSinhVien
 
             if (suKiens.Count == 0)
                 lblNext.Enabled = false;
-            
-            int index = 0;
-            foreach (CHoatDong_DTO lh in lichHocs)
-            {
-                    arrStrThongTinLH[0, index] = new CMonHoc_BLL().loadTenMon(lh.StrMaMon);
-                    arrStrThongTinLH[1, index++] = lh.DtmGioBD.ToShortTimeString() +
-                            "\n" + lh.DtmGioKT.ToShortTimeString();
-                if(index>4) break;
-            }
 
-            creatLineHorizotal(0, 32,  arrStrThongTinLH[0,0], arrStrThongTinLH[1,0]);
-            creatLineHorizotal(0, 86,  arrStrThongTinLH[0,1], arrStrThongTinLH[1,1]);
-            creatLineHorizotal(0, 140, arrStrThongTinLH[0,2], arrStrThongTinLH[1,2]);
-            creatLineHorizotal(0, 194, arrStrThongTinLH[0,3], arrStrThongTinLH[1,3]);
-            creatLineHorizotal(0, pnlThongTin.Height - 2, arrStrThongTinLH[0,4], arrStrThongTinLH[1,4]);
+           
+
+            //int index = 0;
+            //foreach (CHoatDong_DTO lh in lichHocs)
+            //{
+            //        arrStrThongTinLH[0, index] = new CMonHoc_BLL().loadTenMon(lh.StrMaMon);
+            //        arrStrThongTinLH[1, index++] = lh.DtmGioBD.ToShortTimeString() +
+            //                "\n" + lh.DtmGioKT.ToShortTimeString();
+            //    if(index>4) break;
+            //}
+
+            //creatLineHorizotal(0, 32,  arrStrThongTinLH[0,0], arrStrThongTinLH[1,0]);
+            //creatLineHorizotal(0, 86,  arrStrThongTinLH[0,1], arrStrThongTinLH[1,1]);
+            //creatLineHorizotal(0, 140, arrStrThongTinLH[0,2], arrStrThongTinLH[1,2]);
+            //creatLineHorizotal(0, 194, arrStrThongTinLH[0,3], arrStrThongTinLH[1,3]);
+            //creatLineHorizotal(0, pnlThongTin.Height - 2, arrStrThongTinLH[0,4], arrStrThongTinLH[1,4]);
+        }
+        private void loadLichHocTrongNgay()
+        {
+            lichHocs = new List<CHoatDong_DTO>();
+            lichHocs = new CHoatDong_BLL().loadLichHocTrongNgay();
+            var listBuffer = lichHocs.Select(i => new { ColorSuKien = i.ClorMauMucDo, DtmBegin = i.DtmGioBD, DtmEnd = i.DtmGioKT, StrNoiDung = i.StrGhiChuHD });
+
+            //Todo listSuKienUC = new List<SuKien>();
+            foreach (var l in listBuffer)
+            {
+                //Todo    SuKien sk = new SuKien(Color.Red, l.DtmBegin, l.DtmEnd, l.StrNoiDung);
+                //Todo  listSuKienUC.Add(sk);
+            }
+            return;
         }
         private void FTongQuan_Load(object sender, EventArgs e)
         {
@@ -95,7 +112,7 @@ namespace WFAQuanLyCaNhanSinhVien
                     }
                 }
             }
-            loadLichHoc();
+            loadSuKienGhiChu();
         }
 
         private void lblNext_Click(object sender, EventArgs e)

@@ -31,6 +31,7 @@ namespace WFAQuanLyCaNhanSinhVien
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTongQuan));
             this.lblChaoMung = new System.Windows.Forms.Label();
             this.pnlCacSuKien = new System.Windows.Forms.Panel();
             this.lblThoiGian = new System.Windows.Forms.Label();
@@ -133,7 +134,7 @@ namespace WFAQuanLyCaNhanSinhVien
             // 
             this.pnlThongTin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlThongTin.Controls.Add(this.lblMonHocHomNay);
-            this.pnlThongTin.Location = new System.Drawing.Point(460, 150);
+            this.pnlThongTin.Location = new System.Drawing.Point(384, 440);
             this.pnlThongTin.Name = "pnlThongTin";
             this.pnlThongTin.Size = new System.Drawing.Size(320, 252);
             this.pnlThongTin.TabIndex = 4;
@@ -143,7 +144,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblMonHocHomNay.AutoEllipsis = true;
             this.lblMonHocHomNay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMonHocHomNay.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblMonHocHomNay.Location = new System.Drawing.Point(3, -1);
+            this.lblMonHocHomNay.Location = new System.Drawing.Point(29, 5);
             this.lblMonHocHomNay.Name = "lblMonHocHomNay";
             this.lblMonHocHomNay.Size = new System.Drawing.Size(313, 30);
             this.lblMonHocHomNay.TabIndex = 0;
@@ -152,7 +153,7 @@ namespace WFAQuanLyCaNhanSinhVien
             // 
             // btnThemSuKien
             // 
-            this.btnThemSuKien.Location = new System.Drawing.Point(90, 453);
+            this.btnThemSuKien.Location = new System.Drawing.Point(90, 476);
             this.btnThemSuKien.Name = "btnThemSuKien";
             this.btnThemSuKien.Size = new System.Drawing.Size(139, 28);
             this.btnThemSuKien.TabIndex = 5;
@@ -164,9 +165,9 @@ namespace WFAQuanLyCaNhanSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 550);
-            this.Controls.Add(this.btnThemSuKien);
+            this.ClientSize = new System.Drawing.Size(1079, 550);
             this.Controls.Add(this.pnlThongTin);
+            this.Controls.Add(this.btnThemSuKien);
             this.Controls.Add(this.pnlCacSuKien);
             this.Controls.Add(this.lblChaoMung);
             this.Name = "FTongQuan";
