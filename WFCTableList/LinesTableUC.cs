@@ -114,7 +114,7 @@ namespace WFCTableList
             lblTime.Text = strTimeLable;
             lblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height)+index* heightContext);
             lblTime.Size = new System.Drawing.Size((int)(0.22 * this.Width), heightContext);
-            lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)(0.15 * heightContext), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)(0.05 * heightContext), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTime.AutoSize = false;
 
             Label lblContext;
@@ -124,7 +124,7 @@ namespace WFCTableList
             lblContext.TextAlign = ContentAlignment.MiddleCenter;
             lblContext.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Height)+index* heightContext);
             lblContext.Size = new System.Drawing.Size(this.Width -lblTime.Width, heightContext);
-            lblContext.Font = new Font("Microsoft Sans Serif", (float)(0.2*heightContext) * (float)(1.0 / lblContext.Text.Length), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblContext.Font = new Font("Microsoft Sans Serif", (float)(0.01*heightContext) * ((float)lblContext.Width / lblContext.Text.Length), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
             lblTime.MouseHover += new EventHandler(lblLabel_MouseHover);
             lblContext.MouseHover += new EventHandler(lblLabel_MouseHover);
@@ -218,12 +218,12 @@ namespace WFCTableList
 
                 TLable.LblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height) + index * heightContext);
                 TLable.LblTime.Size = new System.Drawing.Size((int)(0.22 * this.Width), heightContext);
-                TLable.LblTime.Font = new Font("", (float)(0.15 * heightContext));
+                TLable.LblTime.Font = new Font("", (float)(0.05 * heightContext));
 
 
                 TLable.LblContext.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Height) + index * heightContext);
                 TLable.LblContext.Size = new System.Drawing.Size(this.Width - TLable.LblTime.Width, heightContext);
-                TLable.LblContext.Font = new Font("", (float)(0.2 * heightContext)*(float)(1.0/ TLable.LblContext.Text.Length));
+                TLable.LblContext.Font = new Font("", (float)(0.01 * heightContext)*((float)TLable.LblContext.Width/ TLable.LblContext.Text.Length));
 
 
                 index++;
