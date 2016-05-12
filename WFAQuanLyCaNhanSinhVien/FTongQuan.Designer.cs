@@ -31,7 +31,6 @@ namespace WFAQuanLyCaNhanSinhVien
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTongQuan));
             this.lblChaoMung = new System.Windows.Forms.Label();
             this.pnlCacSuKien = new System.Windows.Forms.Panel();
             this.lblThoiGian = new System.Windows.Forms.Label();
@@ -39,11 +38,9 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblNext = new System.Windows.Forms.Label();
             this.lblPrev = new System.Windows.Forms.Label();
             this.lblCacSuKien = new System.Windows.Forms.Label();
-            this.pnlThongTin = new System.Windows.Forms.Panel();
-            this.lblMonHocHomNay = new System.Windows.Forms.Label();
             this.btnThemSuKien = new System.Windows.Forms.Button();
+            this.linesTableUC = new WFCTableList.LinesTableUC();
             this.pnlCacSuKien.SuspendLayout();
-            this.pnlThongTin.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblChaoMung
@@ -51,7 +48,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblChaoMung.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblChaoMung.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChaoMung.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblChaoMung.Location = new System.Drawing.Point(0, 50);
+            this.lblChaoMung.Location = new System.Drawing.Point(4, 50);
             this.lblChaoMung.Name = "lblChaoMung";
             this.lblChaoMung.Size = new System.Drawing.Size(875, 74);
             this.lblChaoMung.TabIndex = 0;
@@ -66,7 +63,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.pnlCacSuKien.Controls.Add(this.lblNext);
             this.pnlCacSuKien.Controls.Add(this.lblPrev);
             this.pnlCacSuKien.Controls.Add(this.lblCacSuKien);
-            this.pnlCacSuKien.Location = new System.Drawing.Point(90, 150);
+            this.pnlCacSuKien.Location = new System.Drawing.Point(95, 150);
             this.pnlCacSuKien.Name = "pnlCacSuKien";
             this.pnlCacSuKien.Size = new System.Drawing.Size(320, 252);
             this.pnlCacSuKien.TabIndex = 1;
@@ -130,27 +127,6 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblCacSuKien.Text = "Các sự kiện sắp tới";
             this.lblCacSuKien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnlThongTin
-            // 
-            this.pnlThongTin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlThongTin.Controls.Add(this.lblMonHocHomNay);
-            this.pnlThongTin.Location = new System.Drawing.Point(384, 440);
-            this.pnlThongTin.Name = "pnlThongTin";
-            this.pnlThongTin.Size = new System.Drawing.Size(320, 252);
-            this.pnlThongTin.TabIndex = 4;
-            // 
-            // lblMonHocHomNay
-            // 
-            this.lblMonHocHomNay.AutoEllipsis = true;
-            this.lblMonHocHomNay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonHocHomNay.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblMonHocHomNay.Location = new System.Drawing.Point(29, 5);
-            this.lblMonHocHomNay.Name = "lblMonHocHomNay";
-            this.lblMonHocHomNay.Size = new System.Drawing.Size(313, 30);
-            this.lblMonHocHomNay.TabIndex = 0;
-            this.lblMonHocHomNay.Text = "Môn học hôm nay";
-            this.lblMonHocHomNay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnThemSuKien
             // 
             this.btnThemSuKien.Location = new System.Drawing.Point(90, 476);
@@ -161,12 +137,20 @@ namespace WFAQuanLyCaNhanSinhVien
             this.btnThemSuKien.UseVisualStyleBackColor = true;
             this.btnThemSuKien.Click += new System.EventHandler(this.btnThemSuKien_Click);
             // 
+            // linesTableUC
+            // 
+            this.linesTableUC.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.linesTableUC.Location = new System.Drawing.Point(467, 150);
+            this.linesTableUC.Name = "linesTableUC";
+            this.linesTableUC.Size = new System.Drawing.Size(320, 252);
+            this.linesTableUC.TabIndex = 6;
+            // 
             // FTongQuan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 550);
-            this.Controls.Add(this.pnlThongTin);
+            this.ClientSize = new System.Drawing.Size(882, 550);
+            this.Controls.Add(this.linesTableUC);
             this.Controls.Add(this.btnThemSuKien);
             this.Controls.Add(this.pnlCacSuKien);
             this.Controls.Add(this.lblChaoMung);
@@ -175,7 +159,6 @@ namespace WFAQuanLyCaNhanSinhVien
             this.Load += new System.EventHandler(this.FTongQuan_Load);
             this.SizeChanged += new System.EventHandler(this.FTongQuan_SizeChanged);
             this.pnlCacSuKien.ResumeLayout(false);
-            this.pnlThongTin.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -189,51 +172,8 @@ namespace WFAQuanLyCaNhanSinhVien
         private System.Windows.Forms.Label lblNext;
         private System.Windows.Forms.Label lblPrev;
         private System.Windows.Forms.Label lblCacSuKien;
-        private System.Windows.Forms.Panel pnlThongTin;
-        private System.Windows.Forms.Label lblMonHocHomNay;
         private System.Windows.Forms.Button btnThemSuKien;
 
-        private Label creatLineHorizotal(int x, int y, string strContext, string strTime)
-        {
-            Label lblLineHorizotal;
-            lblLineHorizotal = new Label();
-            lblLineHorizotal.AutoSize = false;
-            lblLineHorizotal.Location = new System.Drawing.Point(x, y);
-            lblLineHorizotal.BorderStyle = BorderStyle.Fixed3D;
-            lblLineHorizotal.Size = new System.Drawing.Size(pnlThongTin.Width, 2);
-            this.pnlThongTin.Controls.Add(lblLineHorizotal);
-
-
-            Label lblTime;
-            lblTime = new Label();
-            lblTime.AutoSize = false;
-            lblTime.Text = strTime;
-            lblTime.TextAlign = ContentAlignment.MiddleCenter;
-            lblTime.Location = new System.Drawing.Point(x, y);
-            lblTime.Size = new System.Drawing.Size(70, 54);
-            this.pnlThongTin.Controls.Add(lblTime);
-
-            Label lblContext;
-            lblContext = new Label();
-            lblContext.AutoSize = false;
-            lblContext.Text= strContext;
-            lblContext.TextAlign = ContentAlignment.MiddleLeft;
-            lblContext.Location = new System.Drawing.Point(x + 75, y);
-            lblContext.Size = new System.Drawing.Size(pnlThongTin.Width - 75, 54);
-            this.pnlThongTin.Controls.Add(lblContext);
-
-            return lblLineHorizotal;
-        }
-        private Label creatLineVertical(int x, int y)
-        {
-            Label lblLineVertical;
-            lblLineVertical = new Label();
-            lblLineVertical.AutoSize = false;
-            lblLineVertical.Location = new System.Drawing.Point(x, y);
-            lblLineVertical.BorderStyle = BorderStyle.Fixed3D;
-            lblLineVertical.Size = new System.Drawing.Size(2, pnlThongTin.Height - y);
-            this.pnlThongTin.Controls.Add(lblLineVertical);
-            return lblLineVertical;
-        }
+        private WFCTableList.LinesTableUC linesTableUC;
     }
 }

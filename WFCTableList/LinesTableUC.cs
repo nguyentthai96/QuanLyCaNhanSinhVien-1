@@ -16,27 +16,26 @@ namespace WFCTableList
         private List<TreeLabel> listsTupLable;
         private Label lblTitle;
 
-        public List<SuKien> Lists
-        {
-            get
-            {
-                return lists;
-            }
+        //[DefaultValue(null)]
+        //public List<SuKien> Lists
+        //{
+        //    get
+        //    {
+        //        return lists;
+        //    }
 
-            set
-            {
-                this.lists = value;
-            }
-        }
+        //    set
+        //    {
+        //        this.lists = value;
+        //    }
+        //}
 
         public LinesTableUC()
         {
             listsTupLable = new List<TreeLabel>(); //quan ly danh sach list label
             InitializeComponent();
-            loadDuLieu();
-            intialComponemt();
         }
-        private void intialComponemt()
+        private void intialComponemt() //add các thành phần lên UserControl cần khởi tạo sau loadDuLieu()
         {
             ///Lable Context
             ///
@@ -84,13 +83,13 @@ namespace WFCTableList
             this.Resize += new EventHandler(linesTableUC_Resize);
         }
 
-        private void loadDuLieu()
+        private void loadDuLieu() //đỏ dữ liệu tu list lên lable, cần chay trước intialComponemt
         {
             int index = 0;
             if (this.lists == null)
             {
                 this.lists = new List<SuKien>();
-                this.lists.Add(new SuKien(Color.AliceBlue, DateTime.Parse("00:00"), DateTime.Parse("23:59"), "Không có học gì."));
+                this.lists.Add(new SuKien(Color.AliceBlue, DateTime.Parse("00:00"), DateTime.Parse("23:59"), "Không có học gì khỏe re đọc blog.Không có học gì khỏe re đọc blog."));
             }
             int heightContext = (int)((0.82 * this.Height) / this.lists.Count);
             foreach (SuKien sk in this.lists)
@@ -101,7 +100,7 @@ namespace WFCTableList
                 index++;
             }
         }
-        private TreeLabel creatLineHorizotal(string strTimeLable, string strTextLable, int index, int heightContext)
+        private TreeLabel creatLineHorizotal(string strTimeLable, string strTextLable, int index, int heightContext) //Tạo ra các Label như yêu cầu mà rỗng dữ liệu với kích thước location
         {
             //Label lblLineHorizotal;
             //lblLineHorizotal = new Label();
@@ -359,9 +358,9 @@ namespace WFCTableList
         private void LinesTableUC_Load(object sender, EventArgs e)
         {
             loadDuLieu();
-            refreshContext();
+            intialComponemt();
         }
-        public void refreshContext()
+        public void refreshContext()//Only change Context, canot change element count list
         {
             int iCount = lists.Count;
             for  (int i=0; i<iCount;i++)
