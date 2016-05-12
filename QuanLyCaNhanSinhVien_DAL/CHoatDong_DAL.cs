@@ -30,9 +30,22 @@ namespace QuanLyCaNhanSinhVien_DAL
             return lists;
         }
 
+        public bool themHoatDongLichHoc(CHoatDong_DTO hoatDong)
+        {
+            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', N'{6}', '{7}')", hoatDong.StrMaHD, hoatDong.StrMaMon,
+                   hoatDong.BChinhKhoa, hoatDong.ITiet, hoatDong.DtmGioBD, hoatDong.DtmGioKT, hoatDong.StrGhiChuHD, hoatDong.ClorMauMucDo.ToArgb());
+            string error = "";
+            new CDataProvider_DAL().excuteNonQuery(strAddHoatDong, ref error);
+            if (error != "")
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool themHoatDong(CHoatDong_DTO hoatDong)
         {
-            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', N'{6}')",hoatDong.StrMaHD, hoatDong.StrMaMon,
+            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', N'{6}', 0)",hoatDong.StrMaHD, hoatDong.StrMaMon,
                     hoatDong.BChinhKhoa, hoatDong.ITiet, hoatDong.DtmGioBD, hoatDong.DtmGioKT, hoatDong.StrGhiChuHD);
             string error="";
             new CDataProvider_DAL().excuteNonQuery(strAddHoatDong,ref error);

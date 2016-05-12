@@ -42,6 +42,11 @@ namespace WFAQuanLyCaNhanSinhVien
                 MessageBox.Show("Thêm thành công.");
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Thêm thất bại.");
+            }
+            
         }
 
         private void btnHuy_Click(object sender, EventArgs e)

@@ -42,10 +42,20 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             suKiens = new List<CHoatDong_DTO>();
             suKiens = new CHoatDong_BLL().loadSuKienTrongNgay();
-            lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
+            
+            try
+            {
+                lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
                        + suKiens[indexSuKien].DtmGioKT.ToShortTimeString();
-            lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
+                lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
                    "\n"+ suKiens[indexSuKien].StrGhiChuHD;
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Lỗi load du liệu tên sự kiện");
+            }
+            
 
             if (suKiens.Count == 0)
                 lblNext.Enabled = false;
@@ -102,12 +112,27 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             lblPrev.Enabled = true;
             indexSuKien++;
+            try
+            {
             lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
                        + suKiens[indexSuKien].DtmGioKT.ToShortTimeString();
             lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
                    "\n" + suKiens[indexSuKien].StrGhiChuHD;
-            if (suKiens.Count == indexSuKien+1)
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Có phải bạn không để dữ có sự kiện nào không?");
+            }
+            if (suKiens.Count == indexSuKien + 1)
+            {
                 lblNext.Enabled = false;
+            }
+            else
+            {
+                lblNext.Enabled = true;
+            }
+
         }
 
         private void lblPrev_Click(object sender, EventArgs e)
@@ -130,9 +155,8 @@ namespace WFAQuanLyCaNhanSinhVien
             FThemSuKien frm = new FThemSuKien();
             frm.ShowDialog();
             suKiens = new CHoatDong_BLL().loadSuKienTrongNgay();
-            lichHocs = new CHoatDong_BLL().loadLichHocTrongNgay();
             indexSuKien = -1;
-            lblNext_Click(this.lblPrev,new EventArgs());
+            lblNext_Click(this.lblNext,new EventArgs());
             lblPrev.Enabled = false;
         }
     }

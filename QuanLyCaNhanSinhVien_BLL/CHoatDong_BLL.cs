@@ -30,5 +30,21 @@ namespace QuanLyCaNhanSinhVien_BLL
         {
             return new CHoatDong_DAL().themHoatDong(hoatDong);
         }
+
+        public bool themLichHoc(CHoatDong_DTO hd, int iThu, string strMaSV)
+        {
+            bool b1 = new CHoatDong_DAL().themHoatDongLichHoc(hd);
+            if (b1 == false)
+            {
+                return false;
+            }
+
+                bool b2= new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV,iThu, hd);
+            if (b2 == false)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

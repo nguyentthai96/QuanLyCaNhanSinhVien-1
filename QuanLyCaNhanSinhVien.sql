@@ -89,9 +89,10 @@ create table HoatDong
 	MaMon varchar(10),
 	ChinhKhoa bit,
 	Tiet int,
-	GioBD time,
-	GioKT time,
+	GioBD datetime,
+	GioKT datetime,
 	GhiChuHD nvarchar(100),
+	MauMucDo int,
 	primary key (MaHD)
 )
 
