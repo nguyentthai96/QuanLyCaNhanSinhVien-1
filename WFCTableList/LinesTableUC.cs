@@ -16,20 +16,6 @@ namespace WFCTableList
         private List<TreeLabel> listsTupLable;
         private Label lblTitle;
 
-        //[DefaultValue(null)]
-        //public List<SuKien> Lists
-        //{
-        //    get
-        //    {
-        //        return lists;
-        //    }
-
-        //    set
-        //    {
-        //        this.lists = value;
-        //    }
-        //}
-
         public LinesTableUC()
         {
             listsTupLable = new List<TreeLabel>(); //quan ly danh sach list label
@@ -111,7 +97,7 @@ namespace WFCTableList
             Label lblTime;
             lblTime = new Label();
             lblTime.Text = strTimeLable;
-            lblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height)+index* heightContext);
+            lblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height) + index * heightContext);
             lblTime.Size = new System.Drawing.Size((int)(0.22 * this.Width), heightContext);
             lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)(0.05 * heightContext), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTime.AutoSize = false;
@@ -121,15 +107,15 @@ namespace WFCTableList
             lblContext.AutoSize = false;
             lblContext.Text = strTextLable;
             lblContext.TextAlign = ContentAlignment.MiddleCenter;
-            lblContext.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Height)+index* heightContext);
-            lblContext.Size = new System.Drawing.Size(this.Width -lblTime.Width, heightContext);
-            lblContext.Font = new Font("Microsoft Sans Serif", (float)(0.01*heightContext) * ((float)lblContext.Width / lblContext.Text.Length), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblContext.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Height) + index * heightContext);
+            lblContext.Size = new System.Drawing.Size(this.Width - lblTime.Width, heightContext);
+            lblContext.Font = new Font("Microsoft Sans Serif", (float)(0.01 * heightContext) * ((float)lblContext.Width / lblContext.Text.Length), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
             lblTime.MouseHover += new EventHandler(lblLabel_MouseHover);
             lblContext.MouseHover += new EventHandler(lblLabel_MouseHover);
 
             lblTime.MouseLeave += new EventHandler(lblLabel_MouseLeave);
-            lblContext.MouseLeave += new EventHandler(lblLabel_MouseLeave); 
+            lblContext.MouseLeave += new EventHandler(lblLabel_MouseLeave);
 
             TreeLabel TLable = new TreeLabel(lblTime, lblContext);
             return TLable;
@@ -154,7 +140,7 @@ namespace WFCTableList
                     ///Todo Cath empty                    
                 }
             }
-            
+
             lbl.BackColor = SystemColors.Control;
         }
 
@@ -165,7 +151,7 @@ namespace WFCTableList
             try
             {
                 TreeLabel lbl_ = listsTupLable.Where(i => i.LblTime == lbl).Single();
-                 index=listsTupLable.IndexOf(lbl_);
+                index = listsTupLable.IndexOf(lbl_);
                 lbl_.LblContext.BackColor = this.lists[index].ColorSuKien;
             }
             catch (Exception)
@@ -191,7 +177,7 @@ namespace WFCTableList
             lbl.BackColor = this.lists[index].ColorSuKien;
         }
 
-    
+
         private void linesTableUC_Resize(object sender, EventArgs e)
         {
             resizeTitleLineVertical();
@@ -209,7 +195,7 @@ namespace WFCTableList
         private void resizeLineHorizotal()
         {
             int index = 0;
-            int heightContext= (int)((0.82 * this.Height) / listsTupLable.Count);
+            int heightContext = (int)((0.82 * this.Height) / listsTupLable.Count);
             foreach (TreeLabel TLable in listsTupLable)
             {
                 //TLable.LblLine.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height));
@@ -222,7 +208,7 @@ namespace WFCTableList
 
                 TLable.LblContext.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Height) + index * heightContext);
                 TLable.LblContext.Size = new System.Drawing.Size(this.Width - TLable.LblTime.Width, heightContext);
-                TLable.LblContext.Font = new Font("", (float)(0.01 * heightContext)*((float)TLable.LblContext.Width/ TLable.LblContext.Text.Length));
+                TLable.LblContext.Font = new Font("", (float)(0.01 * heightContext) * ((float)TLable.LblContext.Width / TLable.LblContext.Text.Length));
 
 
                 index++;
@@ -357,17 +343,12 @@ namespace WFCTableList
 
         private void LinesTableUC_Load(object sender, EventArgs e)
         {
+            loadUserControl();
+        }
+        public void loadUserControl()
+        {
             loadDuLieu();
             intialComponemt();
-        }
-        public void refreshContext()//Only change Context, canot change element count list
-        {
-            int iCount = lists.Count;
-            for  (int i=0; i<iCount;i++)
-            {
-                listsTupLable[i].LblTime.Text = lists[i].DtmBegin.ToShortTimeString() + "\n" + lists[i].DtmEnd.ToShortTimeString();
-                listsTupLable[i].LblContext.Text = lists[i].StrNoiDung;
-            }
         }
     }
 }

@@ -31,6 +31,7 @@ namespace WFAQuanLyCaNhanSinhVien
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblChaoMung = new System.Windows.Forms.Label();
             this.pnlCacSuKien = new System.Windows.Forms.Panel();
             this.lblThoiGian = new System.Windows.Forms.Label();
@@ -40,7 +41,11 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblCacSuKien = new System.Windows.Forms.Label();
             this.btnThemSuKien = new System.Windows.Forms.Button();
             this.linesTableUC = new WFCTableList.LinesTableUC();
+            this.cmsMonHocHomNay = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiThemLich = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiThoiKhoaBieu = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlCacSuKien.SuspendLayout();
+            this.cmsMonHocHomNay.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblChaoMung
@@ -140,10 +145,32 @@ namespace WFAQuanLyCaNhanSinhVien
             // linesTableUC
             // 
             this.linesTableUC.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.linesTableUC.ContextMenuStrip = this.cmsMonHocHomNay;
             this.linesTableUC.Location = new System.Drawing.Point(467, 150);
             this.linesTableUC.Name = "linesTableUC";
             this.linesTableUC.Size = new System.Drawing.Size(320, 252);
             this.linesTableUC.TabIndex = 6;
+            // 
+            // cmsMonHocHomNay
+            // 
+            this.cmsMonHocHomNay.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiThemLich,
+            this.tmiThoiKhoaBieu});
+            this.cmsMonHocHomNay.Name = "cmsMonHocHomNay";
+            this.cmsMonHocHomNay.Size = new System.Drawing.Size(154, 48);
+            // 
+            // tmiThemLich
+            // 
+            this.tmiThemLich.Name = "tmiThemLich";
+            this.tmiThemLich.Size = new System.Drawing.Size(153, 22);
+            this.tmiThemLich.Text = "Thêm Lịch";
+            this.tmiThemLich.Click += new System.EventHandler(this.tmiThemLich_Click);
+            // 
+            // tmiThoiKhoaBieu
+            // 
+            this.tmiThoiKhoaBieu.Name = "tmiThoiKhoaBieu";
+            this.tmiThoiKhoaBieu.Size = new System.Drawing.Size(153, 22);
+            this.tmiThoiKhoaBieu.Text = "Thời khóa biểu";
             // 
             // FTongQuan
             // 
@@ -159,6 +186,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.Load += new System.EventHandler(this.FTongQuan_Load);
             this.SizeChanged += new System.EventHandler(this.FTongQuan_SizeChanged);
             this.pnlCacSuKien.ResumeLayout(false);
+            this.cmsMonHocHomNay.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -175,5 +203,8 @@ namespace WFAQuanLyCaNhanSinhVien
         private System.Windows.Forms.Button btnThemSuKien;
 
         private WFCTableList.LinesTableUC linesTableUC;
+        private ContextMenuStrip cmsMonHocHomNay;
+        private ToolStripMenuItem tmiThemLich;
+        private ToolStripMenuItem tmiThoiKhoaBieu;
     }
 }

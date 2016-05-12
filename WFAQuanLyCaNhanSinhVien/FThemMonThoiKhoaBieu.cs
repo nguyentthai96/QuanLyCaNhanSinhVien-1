@@ -52,7 +52,13 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             CHoatDong_DTO hd = layDuLieuTuFrom();
             int iThu = (int)numbThu.Value;
-            new CHoatDong_BLL().themLichHoc(hd,iThu, strMaSV);
+            if(new CHoatDong_BLL().themLichHoc(hd,iThu, strMaSV)==false)
+            {
+                MessageBox.Show("Thêm lỗi");
+                return;
+            }
+            this.Close();
+            return;
         }
         private CHoatDong_DTO layDuLieuTuFrom()
         {
@@ -60,6 +66,11 @@ namespace WFAQuanLyCaNhanSinhVien
             int iCoutHD = new CHoatDong_BLL().countHoatDong();
             hd = new CHoatDong_DTO("HD"+iCoutHD, cmbMonHoc.SelectedValue.ToString(), true, (int)numbTiet.Value, dtmpTu.Value, dtmpDen.Value, txtMoTa.Text,lblMauLich.BackColor.ToArgb());
             return hd;
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

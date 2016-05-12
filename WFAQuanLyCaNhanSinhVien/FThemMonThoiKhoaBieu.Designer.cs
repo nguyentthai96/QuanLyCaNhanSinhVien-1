@@ -30,9 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblMauLich = new System.Windows.Forms.Label();
+            this.numbThu = new System.Windows.Forms.NumericUpDown();
             this.numbTiet = new System.Windows.Forms.NumericUpDown();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
+            this.lblThu = new System.Windows.Forms.Label();
             this.lblTiet = new System.Windows.Forms.Label();
             this.txtMoTa = new System.Windows.Forms.TextBox();
             this.lblDen2 = new System.Windows.Forms.Label();
@@ -43,12 +45,10 @@
             this.dtmpDen = new System.Windows.Forms.DateTimePicker();
             this.lblThemHoatDong = new System.Windows.Forms.Label();
             this.cold = new System.Windows.Forms.ColorDialog();
-            this.lblThu = new System.Windows.Forms.Label();
-            this.numbThu = new System.Windows.Forms.NumericUpDown();
             dtmpTu = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numbTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numbThu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numbTiet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,6 +88,14 @@
             this.lblMauLich.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMauLich.Click += new System.EventHandler(this.lblMauLich_Click);
             // 
+            // numbThu
+            // 
+            this.numbThu.Location = new System.Drawing.Point(156, 156);
+            this.numbThu.Name = "numbThu";
+            this.numbThu.Size = new System.Drawing.Size(120, 20);
+            this.numbThu.TabIndex = 9;
+            this.numbThu.ValueChanged += new System.EventHandler(this.numbTiet_ValueChanged);
+            // 
             // numbTiet
             // 
             this.numbTiet.Location = new System.Drawing.Point(153, 72);
@@ -104,6 +112,7 @@
             this.btnHuy.TabIndex = 8;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnThem
             // 
@@ -114,6 +123,16 @@
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // lblThu
+            // 
+            this.lblThu.AutoSize = true;
+            this.lblThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThu.Location = new System.Drawing.Point(22, 156);
+            this.lblThu.Name = "lblThu";
+            this.lblThu.Size = new System.Drawing.Size(37, 17);
+            this.lblThu.TabIndex = 1;
+            this.lblThu.Text = "Thứ:";
             // 
             // lblTiet
             // 
@@ -223,24 +242,6 @@
             // 
             this.cold.Color = System.Drawing.SystemColors.ControlLight;
             // 
-            // lblThu
-            // 
-            this.lblThu.AutoSize = true;
-            this.lblThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThu.Location = new System.Drawing.Point(22, 156);
-            this.lblThu.Name = "lblThu";
-            this.lblThu.Size = new System.Drawing.Size(37, 17);
-            this.lblThu.TabIndex = 1;
-            this.lblThu.Text = "Thứ:";
-            // 
-            // numbThu
-            // 
-            this.numbThu.Location = new System.Drawing.Point(156, 156);
-            this.numbThu.Name = "numbThu";
-            this.numbThu.Size = new System.Drawing.Size(120, 20);
-            this.numbThu.TabIndex = 9;
-            this.numbThu.ValueChanged += new System.EventHandler(this.numbTiet_ValueChanged);
-            // 
             // FThemMonThoiKhoaBieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,8 +254,8 @@
             this.Load += new System.EventHandler(this.FThemMonThoiKhoaBieu_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numbTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numbThu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numbTiet)).EndInit();
             this.ResumeLayout(false);
 
         }

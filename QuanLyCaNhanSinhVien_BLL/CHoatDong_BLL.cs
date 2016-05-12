@@ -39,7 +39,7 @@ namespace QuanLyCaNhanSinhVien_BLL
                 return false;
             }
 
-                bool b2= new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV,iThu, hd);
+                bool b2= new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV,iThu, hd.StrMaHD);
             if (b2 == false)
             {
                 return false;

@@ -52,7 +52,6 @@ namespace WFAQuanLyCaNhanSinhVien
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Lỗi load du liệu tên sự kiện");
             }
             
@@ -60,13 +59,18 @@ namespace WFAQuanLyCaNhanSinhVien
             if (suKiens.Count == 0)
                 lblNext.Enabled = false;
         }
-        private void loadLichHocTrongNgay()
-        {
-            listSuKienUC = new List<SuKien>();
-            lichHocs = new List<CHoatDong_DTO>();
+        private void loadLichHocTrongNgay() //Chỉ vừa tạo được listSuKien tu database load lên còn phải update dữ liệu lineTable
+        {         
             lichHocs = new CHoatDong_BLL().loadLichHocTrongNgay();
             var listBuffer = lichHocs.Select(i => new { ColorSuKien = i.ClorMauMucDo, DtmBegin = i.DtmGioBD, DtmEnd = i.DtmGioKT, StrNoiDung = i.StrGhiChuHD });
-
+            if (listBuffer==null)
+            {
+                listSuKienUC = null;
+            }
+            else
+            {
+                listSuKienUC = new List<SuKien>();
+            }
             foreach (var l in listBuffer)
             {
                 SuKien sk = new SuKien(l.ColorSuKien, l.DtmBegin, l.DtmEnd, l.StrNoiDung);
@@ -158,6 +162,15 @@ namespace WFAQuanLyCaNhanSinhVien
             indexSuKien = -1;
             lblNext_Click(this.lblNext,new EventArgs());
             lblPrev.Enabled = false;
+        }
+
+        private void tmiThemLich_Click(object sender, EventArgs e)
+        {
+            FThemMonThoiKhoaBieu thoiKhoaBieu = new FThemMonThoiKhoaBieu(strMaSV);
+            thoiKhoaBieu.ShowDialog();
+
+            loadLichHocTrongNgay();
+            
         }
     }
 }

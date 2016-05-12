@@ -16,7 +16,7 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FThemMonThoiKhoaBieu("14110182"));
+            Application.Run(new FTongQuan("14110182"));
         }
     }
 }
