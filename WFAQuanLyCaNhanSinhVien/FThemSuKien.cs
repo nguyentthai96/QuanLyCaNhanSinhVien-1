@@ -14,8 +14,14 @@ namespace WFAQuanLyCaNhanSinhVien
 {
     public partial class FThemSuKien : Form
     {
+        private string strMaSV;
         public FThemSuKien()
         {
+            InitializeComponent();
+        }
+        public FThemSuKien(string strMaSV)
+        {
+            this.strMaSV = strMaSV;
             InitializeComponent();
         }
 
@@ -37,7 +43,7 @@ namespace WFAQuanLyCaNhanSinhVien
                 MessageBox.Show("Thời gian bạn nhập không hợp lý.");
                 return;
             }
-            if (new CHoatDong_BLL().themHoatDong(hoatDong))
+            if (new CHoatDong_BLL().themHoatDong(strMaSV,hoatDong))
             {
                 MessageBox.Show("Thêm thành công.");
                 this.Close();
@@ -46,7 +52,6 @@ namespace WFAQuanLyCaNhanSinhVien
             {
                 MessageBox.Show("Thêm thất bại.");
             }
-            
         }
 
         private void btnHuy_Click(object sender, EventArgs e)

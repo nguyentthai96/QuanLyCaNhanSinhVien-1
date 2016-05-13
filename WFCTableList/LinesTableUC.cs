@@ -13,60 +13,15 @@ namespace WFCTableList
     public partial class LinesTableUC : UserControl
     {
         public List<SuKien> lists;
+        /// <summary>
+        /// quan ly danh sach list label
+        /// </summary>
         private List<TreeLabel> listsTupLable;
         private Label lblTitle;
 
         public LinesTableUC()
         {
-            listsTupLable = new List<TreeLabel>(); //quan ly danh sach list label
             InitializeComponent();
-        }
-        private void intialComponemt() //add các thành phần lên UserControl cần khởi tạo sau loadDuLieu()
-        {
-            ///Lable Context
-            ///
-            this.lblTitle = new Label();
-            this.lblTitle.AutoEllipsis = true;
-            this.lblTitle.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(this.Width, (int)(0.18 * this.Height));
-            float emSize = (float)(0.07 * this.Height);
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", emSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Môn học hôm nay";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Controls.Add(lblTitle);
-
-            //Bo duong doc
-            ///Lable lblLineVertical
-            ///
-            //lblLineVertical = new Label();
-            //lblLineVertical.AutoSize = false;
-            //lblLineVertical.BorderStyle = BorderStyle.Fixed3D;
-            //lblLineVertical.Location = new System.Drawing.Point((int)(0.22*this.Width), (int)(0.18 * this.Width));
-            //lblLineVertical.Size = new System.Drawing.Size(2,(int)(0.82*this.Height));
-            //this.Controls.Add(lblLineVertical);
-
-            foreach (TreeLabel tupLable in listsTupLable)
-            {
-                //tupLable.LblLine.BorderStyle = BorderStyle.Fixed3D;
-                //this.Controls.Add(tupLable.LblLine);
-
-                tupLable.LblTime.BorderStyle = BorderStyle.Fixed3D;
-                tupLable.LblTime.AutoSize = false;
-                tupLable.LblTime.TextAlign = ContentAlignment.MiddleCenter;
-                this.Controls.Add(tupLable.LblTime);
-
-                tupLable.LblContext.BorderStyle = BorderStyle.Fixed3D;
-                tupLable.LblContext.AutoSize = false;
-                tupLable.LblContext.TextAlign = ContentAlignment.MiddleCenter;
-                this.Controls.Add(tupLable.LblContext);
-            }
-
-            ///UserControl
-            ///
-            this.Resize += new EventHandler(linesTableUC_Resize);
         }
 
         private void loadDuLieu() //đỏ dữ liệu tu list lên lable, cần chay trước intialComponemt
@@ -75,8 +30,9 @@ namespace WFCTableList
             if (this.lists == null)
             {
                 this.lists = new List<SuKien>();
-                this.lists.Add(new SuKien(Color.AliceBlue, DateTime.Parse("00:00"), DateTime.Parse("23:59"), "Không có học gì khỏe re đọc blog.Không có học gì khỏe re đọc blog."));
+                this.lists.Add(new SuKien(Color.AliceBlue, DateTime.Parse("00:00"), DateTime.Parse("23:59"), "Không có học gì khỏe re đọc blog"));
             }
+            listsTupLable = new List<TreeLabel>();
             int heightContext = (int)((0.82 * this.Height) / this.lists.Count);
             foreach (SuKien sk in this.lists)
             {
@@ -88,12 +44,6 @@ namespace WFCTableList
         }
         private TreeLabel creatLineHorizotal(string strTimeLable, string strTextLable, int index, int heightContext) //Tạo ra các Label như yêu cầu mà rỗng dữ liệu với kích thước location
         {
-            //Label lblLineHorizotal;
-            //lblLineHorizotal = new Label();
-            //lblLineHorizotal.Location = new System.Drawing.Point(0, (int)(0.18*this.Height)+index);
-            //lblLineHorizotal.Size = new System.Drawing.Size(this.Width, 2);
-            //lblLineHorizotal.AutoSize = false;
-
             Label lblTime;
             lblTime = new Label();
             lblTime.Text = strTimeLable;
@@ -120,6 +70,44 @@ namespace WFCTableList
             TreeLabel TLable = new TreeLabel(lblTime, lblContext);
             return TLable;
         }
+        /// <summary>
+        /// Add các thành phần lên cả Title UserControl cần khởi tạo sau loadDuLieu()
+        /// </summary>
+        private void intialComponemt() 
+        {
+            ///Lable Context
+            ///
+            this.lblTitle = new Label();
+            this.lblTitle.AutoEllipsis = true;
+            this.lblTitle.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(this.Width, (int)(0.18 * this.Height));
+            float emSize = (float)(0.07 * this.Height);
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", emSize, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Môn học hôm nay";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Controls.Add(lblTitle);
+
+
+            foreach (TreeLabel tupLable in listsTupLable)
+            {
+                tupLable.LblTime.BorderStyle = BorderStyle.Fixed3D;
+                tupLable.LblTime.AutoSize = false;
+                tupLable.LblTime.TextAlign = ContentAlignment.MiddleCenter;
+                this.Controls.Add(tupLable.LblTime);
+
+                tupLable.LblContext.BorderStyle = BorderStyle.Fixed3D;
+                tupLable.LblContext.AutoSize = false;
+                tupLable.LblContext.TextAlign = ContentAlignment.MiddleCenter;
+                this.Controls.Add(tupLable.LblContext);
+            }
+
+            ///UserControl
+            ///
+            this.Resize += new EventHandler(linesTableUC_Resize);
+        }
 
         private void lblLabel_MouseLeave(object sender, EventArgs e)
         {
@@ -143,7 +131,6 @@ namespace WFCTableList
 
             lbl.BackColor = SystemColors.Control;
         }
-
         private void lblLabel_MouseHover(object sender, EventArgs e)
         {
             int index = -1;
@@ -176,31 +163,22 @@ namespace WFCTableList
             }
             lbl.BackColor = this.lists[index].ColorSuKien;
         }
-
-
         private void linesTableUC_Resize(object sender, EventArgs e)
         {
-            resizeTitleLineVertical();
+            resizeTitleLine();
             resizeLineHorizotal();
         }
-        private void resizeTitleLineVertical()
+        private void resizeTitleLine()
         {
             this.lblTitle.Size = new System.Drawing.Size(this.Width, (int)(0.18 * this.Height));
             this.lblTitle.Font = new Font(FontFamily.GenericSansSerif, (float)(0.07 * this.Height));
-            //Bo duong doc di
-            //lblLineVertical.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Width));
-            //lblLineVertical.Size = new System.Drawing.Size(2, (int)(0.82 * this.Height));
         }
-
         private void resizeLineHorizotal()
         {
             int index = 0;
             int heightContext = (int)((0.82 * this.Height) / listsTupLable.Count);
             foreach (TreeLabel TLable in listsTupLable)
             {
-                //TLable.LblLine.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height));
-                //TLable.LblLine.Size = new System.Drawing.Size(this.Width, 2);
-
                 TLable.LblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height) + index * heightContext);
                 TLable.LblTime.Size = new System.Drawing.Size((int)(0.22 * this.Width), heightContext);
                 TLable.LblTime.Font = new Font("", (float)(0.05 * heightContext));
@@ -215,6 +193,27 @@ namespace WFCTableList
             }
         }
 
+        private void LinesTableUC_Load(object sender, EventArgs e)
+        {
+            loadDuLieu();
+            intialComponemt();
+        }
+        public void loadUserControl()
+        {
+            removeComponemt();
+            listsTupLable.Clear();
+            loadDuLieu();
+            intialComponemt();
+        }
+        private void removeComponemt()
+        {
+            foreach (TreeLabel l in listsTupLable)
+            {
+                l.LblContext.Dispose();
+                l.LblTime.Dispose();
+            }
+            lblTitle.Dispose();
+        }
         public class SuKien
         {
             private Color colorSuKien;
@@ -282,7 +281,6 @@ namespace WFCTableList
                 }
             }
         }
-
         private class TreeLabel
         {
             private Label lblLine;
@@ -339,16 +337,6 @@ namespace WFCTableList
                     this.lblContext = value;
                 }
             }
-        }
-
-        private void LinesTableUC_Load(object sender, EventArgs e)
-        {
-            loadUserControl();
-        }
-        public void loadUserControl()
-        {
-            loadDuLieu();
-            intialComponemt();
         }
     }
 }

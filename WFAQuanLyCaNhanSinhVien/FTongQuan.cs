@@ -16,70 +16,34 @@ namespace WFAQuanLyCaNhanSinhVien
     public partial class FTongQuan : Form
     {
         private string strMaSV;
+        /// <summary>
+        /// Index lấy cho next prev của Sự kiện quản lý trên suKiens
+        /// </summary>
+        int indexSuKien = 0;
+        /// <summary>
+        /// Chứa thông tin hoạt động sự kiện đổ lên các label trên panel
+        /// </summary>
+        List<CHoatDong_DTO> suKiens;
+        /// <summary>
+        /// Chứa dữ liệu load lên từ cơ sở dữ liệu
+        /// </summary>
+        List<CHoatDong_DTO> lichHocs;
+        /// <summary>
+        /// Chứa dữ liệu có thể đổ xuống lineTableUC, cần phải chuyển dữ liệu từ lichHocs sang
+        /// </summary>
         List<SuKien> listSuKienUC;
+
         public FTongQuan(string strMaSV)
         {
-          
+            this.strMaSV = strMaSV;
             loadLichHocTrongNgay();
             InitializeComponent();
-           linesTableUC.lists = listSuKienUC;
-            this.strMaSV = strMaSV;
+            linesTableUC.lists = listSuKienUC;
         }
 
-        private void FTongQuan_SizeChanged(object sender, EventArgs e)
-        {
-            pnlCacSuKien.Location = new Point(this.Width / 2 - pnlCacSuKien.Width - 31 , pnlCacSuKien.Location.Y);
-          linesTableUC.Location = new Point(this.Width / 2 + 30, linesTableUC.Location.Y);
-            lblChaoMung.Width = this.Width;
-            btnThemSuKien.Location = new Point(pnlCacSuKien.Location.X, btnThemSuKien.Location.Y);
-        }
-
-        List<CHoatDong_DTO> suKiens;
-        List<CHoatDong_DTO> lichHocs;
-        
-        int indexSuKien = 0;
-        private void loadSuKienGhiChu()
-        {
-            suKiens = new List<CHoatDong_DTO>();
-            suKiens = new CHoatDong_BLL().loadSuKienTrongNgay();
-            
-            try
-            {
-                lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
-                       + suKiens[indexSuKien].DtmGioKT.ToShortTimeString();
-                lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
-                   "\n"+ suKiens[indexSuKien].StrGhiChuHD;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Lỗi load du liệu tên sự kiện");
-            }
-            
-
-            if (suKiens.Count == 0)
-                lblNext.Enabled = false;
-        }
-        private void loadLichHocTrongNgay() //Chỉ vừa tạo được listSuKien tu database load lên còn phải update dữ liệu lineTable
-        {         
-            lichHocs = new CHoatDong_BLL().loadLichHocTrongNgay();
-            var listBuffer = lichHocs.Select(i => new { ColorSuKien = i.ClorMauMucDo, DtmBegin = i.DtmGioBD, DtmEnd = i.DtmGioKT, StrNoiDung = i.StrGhiChuHD });
-            if (listBuffer==null)
-            {
-                listSuKienUC = null;
-            }
-            else
-            {
-                listSuKienUC = new List<SuKien>();
-            }
-            foreach (var l in listBuffer)
-            {
-                SuKien sk = new SuKien(l.ColorSuKien, l.DtmBegin, l.DtmEnd, l.StrNoiDung);
-                listSuKienUC.Add(sk);
-            }
-            return;
-        }
         private void FTongQuan_Load(object sender, EventArgs e)
         {
+            #region In ra dòng xin chào
             if (4 < DateTime.Now.Hour && DateTime.Now.Hour < 11)
             {
                 lblChaoMung.Text = "Buổi sáng học tập tốt.";
@@ -109,19 +73,95 @@ namespace WFAQuanLyCaNhanSinhVien
                     }
                 }
             }
+            #endregion
+
             loadSuKienGhiChu();
+        }
+        
+        /// <summary>
+        /// Su kiện của ghi chú.
+        /// </summary>
+        private void loadSuKienGhiChu()
+        {
+            suKiens = new CHoatDong_BLL().loadSuKienTrongNgay(strMaSV);
+
+            try
+            {
+                lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToString() + "\n"
+                       + suKiens[indexSuKien].DtmGioKT.ToString();
+                lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
+                   "\n" + suKiens[indexSuKien].StrGhiChuHD;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi load dữ liệu sự kiện, không có sự kiện nào");
+            }
+            
+            if (suKiens.Count <= 1)
+                lblNext.Enabled = false;
+        }
+        
+        /// <summary>
+        /// Load dữ liệu lịch học từ database và đưa đến listSuKienUC để sau đó đưa vào lineTableUC
+        /// </summary>
+        private bool loadLichHocTrongNgay() 
+        {
+            lichHocs = new CHoatDong_BLL().loadLichHocTrongNgay(strMaSV);
+                if (lichHocs == null)
+                {
+                    listSuKienUC = null;
+                return false;
+                }
+            
+            var listBuffer = lichHocs.Select(i => new { ColorSuKien = i.ClorMauMucDo, DtmBegin = i.DtmGioBD, DtmEnd = i.DtmGioKT, StrNoiDung = new CMonHoc_BLL().loadTenMon(i.StrMaMon) });
+            if (listBuffer == null)
+            {
+                listSuKienUC = null;
+                return false;
+            }
+            else
+            {
+                listSuKienUC = new List<SuKien>();
+            }
+            foreach (var l in listBuffer)
+            {
+                SuKien sk = new SuKien(l.ColorSuKien, l.DtmBegin, l.DtmEnd, l.StrNoiDung);
+                listSuKienUC.Add(sk);
+            }
+            return true;
+        }
+
+        private void FTongQuan_SizeChanged(object sender, EventArgs e)
+        {
+            pnlCacSuKien.Location = new Point(this.Width / 2 - pnlCacSuKien.Width - 31, pnlCacSuKien.Location.Y);
+            linesTableUC.Location = new Point(this.Width / 2 + 30, linesTableUC.Location.Y);
+            lblChaoMung.Width = this.Width;
+        }
+
+        private void tmiThemSuKien_Click(object sender, EventArgs e)
+        {
+            FThemSuKien frm = new FThemSuKien(strMaSV);
+            frm.ShowDialog();
+            suKiens = new CHoatDong_BLL().loadSuKienTrongNgay(strMaSV);
+            indexSuKien = -1;
+            if (suKiens.Count!=0)
+            {
+                lblNext_Click(this.lblNext, new EventArgs());
+                lblPrev.Enabled = false;
+            }
         }
 
         private void lblNext_Click(object sender, EventArgs e)
         {
-            lblPrev.Enabled = true;
             indexSuKien++;
             try
             {
-            lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
-                       + suKiens[indexSuKien].DtmGioKT.ToShortTimeString();
-            lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
-                   "\n" + suKiens[indexSuKien].StrGhiChuHD;
+                lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToString() + "\n"
+                           + suKiens[indexSuKien].DtmGioKT.ToString();
+                lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
+                       "\n" + suKiens[indexSuKien].StrGhiChuHD;
+                
+                lblPrev.Enabled = true;
             }
             catch (Exception)
             {
@@ -136,9 +176,7 @@ namespace WFAQuanLyCaNhanSinhVien
             {
                 lblNext.Enabled = true;
             }
-
         }
-
         private void lblPrev_Click(object sender, EventArgs e)
         {
             indexSuKien--;
@@ -146,22 +184,12 @@ namespace WFAQuanLyCaNhanSinhVien
             {
                 lblPrev.Enabled = false;
             }
-            lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToShortTimeString() + "\n"
-                       + suKiens[indexSuKien].DtmGioKT.ToShortTimeString();
+            lblThoiGian.Text = suKiens[indexSuKien].DtmGioBD.ToString() + "\n"
+                       + suKiens[indexSuKien].DtmGioKT.ToString();
             lblThongTin.Text = new CMonHoc_BLL().loadTenMon(suKiens[indexSuKien].StrMaMon) +
                    "\n" + suKiens[indexSuKien].StrGhiChuHD;
-            if (suKiens.Count > indexSuKien+1)
+            if (suKiens.Count > indexSuKien + 1)
                 lblNext.Enabled = true;
-        }
-
-        private void btnThemSuKien_Click(object sender, EventArgs e)
-        {
-            FThemSuKien frm = new FThemSuKien();
-            frm.ShowDialog();
-            suKiens = new CHoatDong_BLL().loadSuKienTrongNgay();
-            indexSuKien = -1;
-            lblNext_Click(this.lblNext,new EventArgs());
-            lblPrev.Enabled = false;
         }
 
         private void tmiThemLich_Click(object sender, EventArgs e)
@@ -170,7 +198,8 @@ namespace WFAQuanLyCaNhanSinhVien
             thoiKhoaBieu.ShowDialog();
 
             loadLichHocTrongNgay();
-            
+            linesTableUC.lists = listSuKienUC;
+            linesTableUC.loadUserControl();
         }
     }
 }

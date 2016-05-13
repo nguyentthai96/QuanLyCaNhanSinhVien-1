@@ -141,5 +141,10 @@ namespace QuanLyCaNhanSinhVien_DTO
                 this.iMauMucDo =value.ToArgb();
             }
         }
+
+        public object CMonHoc_BLL()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

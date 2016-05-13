@@ -12,13 +12,13 @@ namespace QuanLyCaNhanSinhVien_BLL
         {
         }
 
-        public List<CHoatDong_DTO> loadSuKienTrongNgay()
+        public List<CHoatDong_DTO> loadSuKienTrongNgay(string strMaSV)
         {
-            return new CHoatDong_DAL().loadSuKienTrongNgay();
+            return new CHoatDong_DAL().loadSuKienTrongNgay(strMaSV);
         }
-        public List<CHoatDong_DTO> loadLichHocTrongNgay()
+        public List<CHoatDong_DTO> loadLichHocTrongNgay(string strMaSV)
         {
-            return new CHoatDong_DAL().loadLichHocTrongNgay();
+            return new CHoatDong_DAL().loadLichHocTrongNgay(strMaSV);
         }
 
         public int countHoatDong()
@@ -26,9 +26,17 @@ namespace QuanLyCaNhanSinhVien_BLL
             return new CHoatDong_DAL().countHoatDong();
         }
 
-        public bool themHoatDong(CHoatDong_DTO hoatDong)
+        public bool themHoatDong(string strMaSV ,CHoatDong_DTO hoatDong)
         {
-            return new CHoatDong_DAL().themHoatDong(hoatDong);
+            if( new CHoatDong_DAL().themHoatDong( hoatDong)==false)
+            {
+                return false;
+            }
+            if (new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV, hoatDong.DtmGioBD.DayOfWeek.GetHashCode(), hoatDong.StrMaHD)==false)
+                {
+                return false;
+            }
+            return true;
         }
 
         public bool themLichHoc(CHoatDong_DTO hd, int iThu, string strMaSV)

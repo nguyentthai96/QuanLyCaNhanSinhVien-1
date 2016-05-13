@@ -39,13 +39,15 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblNext = new System.Windows.Forms.Label();
             this.lblPrev = new System.Windows.Forms.Label();
             this.lblCacSuKien = new System.Windows.Forms.Label();
-            this.btnThemSuKien = new System.Windows.Forms.Button();
             this.linesTableUC = new WFCTableList.LinesTableUC();
             this.cmsMonHocHomNay = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiThemLich = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiThoiKhoaBieu = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsSuKienHomNay = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiThemSuKien = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlCacSuKien.SuspendLayout();
             this.cmsMonHocHomNay.SuspendLayout();
+            this.cmsSuKienHomNay.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblChaoMung
@@ -63,6 +65,7 @@ namespace WFAQuanLyCaNhanSinhVien
             // pnlCacSuKien
             // 
             this.pnlCacSuKien.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlCacSuKien.ContextMenuStrip = this.cmsSuKienHomNay;
             this.pnlCacSuKien.Controls.Add(this.lblThoiGian);
             this.pnlCacSuKien.Controls.Add(this.lblThongTin);
             this.pnlCacSuKien.Controls.Add(this.lblNext);
@@ -132,16 +135,6 @@ namespace WFAQuanLyCaNhanSinhVien
             this.lblCacSuKien.Text = "Các sự kiện sắp tới";
             this.lblCacSuKien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnThemSuKien
-            // 
-            this.btnThemSuKien.Location = new System.Drawing.Point(90, 476);
-            this.btnThemSuKien.Name = "btnThemSuKien";
-            this.btnThemSuKien.Size = new System.Drawing.Size(139, 28);
-            this.btnThemSuKien.TabIndex = 5;
-            this.btnThemSuKien.Text = "Thêm Sự kiện";
-            this.btnThemSuKien.UseVisualStyleBackColor = true;
-            this.btnThemSuKien.Click += new System.EventHandler(this.btnThemSuKien_Click);
-            // 
             // linesTableUC
             // 
             this.linesTableUC.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -172,13 +165,26 @@ namespace WFAQuanLyCaNhanSinhVien
             this.tmiThoiKhoaBieu.Size = new System.Drawing.Size(153, 22);
             this.tmiThoiKhoaBieu.Text = "Thời khóa biểu";
             // 
+            // cmsSuKienHomNay
+            // 
+            this.cmsSuKienHomNay.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiThemSuKien});
+            this.cmsSuKienHomNay.Name = "cmsSuKienHomNay";
+            this.cmsSuKienHomNay.Size = new System.Drawing.Size(147, 26);
+            // 
+            // tmiThemSuKien
+            // 
+            this.tmiThemSuKien.Name = "tmiThemSuKien";
+            this.tmiThemSuKien.Size = new System.Drawing.Size(152, 22);
+            this.tmiThemSuKien.Text = "Thêm Sự kiện";
+            this.tmiThemSuKien.Click += new System.EventHandler(this.tmiThemSuKien_Click);
+            // 
             // FTongQuan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 550);
             this.Controls.Add(this.linesTableUC);
-            this.Controls.Add(this.btnThemSuKien);
             this.Controls.Add(this.pnlCacSuKien);
             this.Controls.Add(this.lblChaoMung);
             this.Name = "FTongQuan";
@@ -187,6 +193,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.SizeChanged += new System.EventHandler(this.FTongQuan_SizeChanged);
             this.pnlCacSuKien.ResumeLayout(false);
             this.cmsMonHocHomNay.ResumeLayout(false);
+            this.cmsSuKienHomNay.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -200,11 +207,12 @@ namespace WFAQuanLyCaNhanSinhVien
         private System.Windows.Forms.Label lblNext;
         private System.Windows.Forms.Label lblPrev;
         private System.Windows.Forms.Label lblCacSuKien;
-        private System.Windows.Forms.Button btnThemSuKien;
 
         private WFCTableList.LinesTableUC linesTableUC;
         private ContextMenuStrip cmsMonHocHomNay;
         private ToolStripMenuItem tmiThemLich;
         private ToolStripMenuItem tmiThoiKhoaBieu;
+        private ContextMenuStrip cmsSuKienHomNay;
+        private ToolStripMenuItem tmiThemSuKien;
     }
 }

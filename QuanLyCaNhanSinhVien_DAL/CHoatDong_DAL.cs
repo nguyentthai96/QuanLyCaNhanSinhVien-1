@@ -64,12 +64,19 @@ namespace QuanLyCaNhanSinhVien_DAL
             return iCount;
         }
 
-        public List<CHoatDong_DTO> loadLichHocTrongNgay()
+        public List<CHoatDong_DTO> loadLichHocTrongNgay(string strMaSV)
         {
-            string strSelectHoatDong = @"select * from HoatDong where ChinhKhoa='1'";
+            DayOfWeek dThu=DateTime.Now.DayOfWeek;
+            int iThu=dThu.GetHashCode();
+            string strSelectHoatDong = @"select * from ThoiKhoaBieu, HoatDong where ThoiKhoaBieu.MaHD=HoatDong.MaHD and ChinhKhoa='1' and Thu='"+iThu+"'"+" and MaSV='"+strMaSV+"'";
 
             DataTable dtb = new DataTable();
-            dtb = new CDataProvider_DAL().getDataTableExcuteQuery("tbHoatDong", strSelectHoatDong);
+            dtb = new CDataProvider_DAL().getDataTableExcuteQuery("tbHoatDongTKBMon", strSelectHoatDong);
+            
+            if (dtb.Rows.Count==0)
+            {
+                return null;
+            }
 
             List<CHoatDong_DTO> lists = new List<CHoatDong_DTO>();
             foreach (DataRow dr in dtb.Rows)
@@ -82,9 +89,10 @@ namespace QuanLyCaNhanSinhVien_DAL
             return lists;
         }
 
-        public List<CHoatDong_DTO> loadSuKienTrongNgay()
+        public List<CHoatDong_DTO> loadSuKienTrongNgay(string strMaSV)
         {
-            string strSelectHoatDong = @"select * from HoatDong where ChinhKhoa='0'";
+            string strHomNay = DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year;
+            string strSelectHoatDong = string.Format("select * from ThoiKhoaBieu, HoatDong where ThoiKhoaBieu.MaHD=HoatDong.MaHD and MaSV='{0}' and ChinhKhoa='0' and (GioBD>='{1}' or GioKT>='{2}')", strMaSV,strHomNay, strHomNay);
 
             DataTable dtb = new DataTable();
             dtb = new CDataProvider_DAL().getDataTableExcuteQuery("tbHoatDong", strSelectHoatDong);

@@ -51,7 +51,7 @@ namespace WFAQuanLyCaNhanSinhVien
         private void btnThem_Click(object sender, EventArgs e)
         {
             CHoatDong_DTO hd = layDuLieuTuFrom();
-            int iThu = (int)numbThu.Value;
+            int iThu = (int)numbThu.Value-1;
             if(new CHoatDong_BLL().themLichHoc(hd,iThu, strMaSV)==false)
             {
                 MessageBox.Show("Thêm lỗi");
