@@ -1,0 +1,13 @@
+Chú thích chương trình:
+	Để sử dụng chương trình đăng nhập account "1" password "1" đã có vài dữ liệu
+											  "2"		   "2"
+
+	Database: 
+		QuanLyCaNhanSinhVienCshema.sql
+		QuanLyCaNhanSinhVienData.sql
+		
+		
+	Danh sách nhóm:
+		Nguyễn Thành Thái 	14110182 
+		Nguyễn Văn Liêm 	14110102 
+		Nguyễn Trong Hiển 	14110055 

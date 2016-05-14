@@ -1,5 +1,0 @@
-Chú thích chương trình:
-	Để sử dụng chương trình đăng nhập account "1" password "1" đã có vài dữ liệu
-											  "2"		   "2"
-
-	
