@@ -30,7 +30,7 @@ namespace WFAQuanLyCaNhanSinhVien
                 loadDSDiemMon(lists[0].Item1);
             }
         }
-        public List<Tuple<string, string, string >> lists;
+        public List<Tuple<string, string, string,string >> lists;
         private bool loadComboBox()
         {
             lists= new CMonHoc_BLL().loadDSMonHKDiem(strMaSV);
@@ -69,7 +69,7 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             int index = cmbMonHoc.SelectedIndex;
 
-            FNhapDiem frm = new FNhapDiem(strMaSV, lists[index].Item1, lists[index].Item3);
+            FNhapDiem frm = new FNhapDiem(strMaSV, lists[index].Item1, lists[index].Item4);
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
             loadDSDiemMon(lists[index].Item1);

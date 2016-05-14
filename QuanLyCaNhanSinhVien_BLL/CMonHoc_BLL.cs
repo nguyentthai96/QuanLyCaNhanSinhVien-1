@@ -26,7 +26,7 @@ namespace QuanLyCaNhanSinhVien_BLL
             return new CMonHoc_DAL().loadDSMonSV(strMaSV);
         }
 
-        public List<Tuple<string, string, string>> loadDSMonHKDiem(string strMaSV)
+        public List<Tuple<string, string, string, string>> loadDSMonHKDiem(string strMaSV)
         {
             return new CMonHoc_DAL().loadDSMonHKDiem(strMaSV);
         }

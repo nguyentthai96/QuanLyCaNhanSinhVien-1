@@ -21,8 +21,8 @@ namespace QuanLyCaNhanSinhVien_DAL
 
         public bool themDiem(CDiemSo_DTO diem)
         {
-            string strThemDiem = string.Format("insert into DiemSo values ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", 
-                diem.StrMaMon, diem.StrMaSV,diem.StrMaHK, diem.StrMaDiem, diem.FSoDiem, diem.FHeSo, diem.DtmNgayDiem);
+            string strThemDiem = string.Format("insert into DiemSo values ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
+                diem.StrMaSV, diem.StrMaMon, diem.StrMaHK, diem.StrMaDiem, diem.FSoDiem, diem.FHeSo, diem.DtmNgayDiem);
 
             string error = "";
             new CDataProvider_DAL().excuteNonQuery(strThemDiem, ref error);

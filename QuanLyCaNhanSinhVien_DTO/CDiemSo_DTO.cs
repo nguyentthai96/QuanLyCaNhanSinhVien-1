@@ -20,7 +20,7 @@ namespace QuanLyCaNhanSinhVien_DTO
         {
             this.strMaMon = strMaMon;
             this.strMaSV = strMaSV;
-            this.StrMaHK=
+            this.StrMaHK = strMaHK;
             this.strMaDiem = strMaDiem;
             this.fSoDiem = fSoDiem;
             this.fHeSo = fHeSo;

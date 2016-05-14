@@ -39,7 +39,6 @@
             this.tmiThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiHocTap = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDiemSoHT = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiMonHocHT = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiThoiKhoaBieu = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSuKienHoatDong = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiBaoCao = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,8 +126,7 @@
             // tmiHocTap
             // 
             this.tmiHocTap.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiDiemSoHT,
-            this.tmiMonHocHT});
+            this.tmiDiemSoHT});
             this.tmiHocTap.Name = "tmiHocTap";
             this.tmiHocTap.Size = new System.Drawing.Size(61, 20);
             this.tmiHocTap.Text = "Học tập";
@@ -139,12 +137,6 @@
             this.tmiDiemSoHT.Size = new System.Drawing.Size(122, 22);
             this.tmiDiemSoHT.Text = "Điểm số";
             this.tmiDiemSoHT.Click += new System.EventHandler(this.tmiDiemSoHT_Click);
-            // 
-            // tmiMonHocHT
-            // 
-            this.tmiMonHocHT.Name = "tmiMonHocHT";
-            this.tmiMonHocHT.Size = new System.Drawing.Size(122, 22);
-            this.tmiMonHocHT.Text = "Môn học";
             // 
             // tmiThoiKhoaBieu
             // 
@@ -201,7 +193,7 @@
             this.tmiDangXuat,
             this.sửaThôngTinToolStripMenuItem});
             this.cmsAccount.Name = "cmsAccount";
-            this.cmsAccount.Size = new System.Drawing.Size(153, 70);
+            this.cmsAccount.Size = new System.Drawing.Size(146, 48);
             // 
             // tmiDangXuat
             // 
@@ -250,7 +242,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tmiThoat;
         private System.Windows.Forms.ToolStripMenuItem tmiSuKienHoatDong;
-        private System.Windows.Forms.ToolStripMenuItem tmiMonHocHT;
         private System.Windows.Forms.ToolStripMenuItem tmiBaoCao;
         private System.Windows.Forms.ToolStripMenuItem tmiDiemSoBC;
         private System.Windows.Forms.ToolStripMenuItem tmiMonHoc;

@@ -97,6 +97,20 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             ttxtTaiKhoan.Focus();
             ttxtTaiKhoan.SelectAll();
+            if (sv!=null && this.ActiveMdiChild!=frmTongQuan)
+            {
+                try
+                {
+                    this.ActiveMdiChild.Close();
+                }
+                catch (Exception) { }
+                frmTongQuan = new FTongQuan(sv.StrMaSV);
+                frmTongQuan.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                frmTongQuan.WindowState = FormWindowState.Maximized;
+                frmTongQuan.MdiParent = this;
+                frmTongQuan.Show();
+                tmiTongQuan.DropDown.Hide();
+            }
         }
 
         Form frmEmpty;
@@ -145,11 +159,18 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiDiemSoHT_Click(object sender, EventArgs e)
         {
+            if(sv==null)
+            {
+                MessageBox.Show("Bạn chưa đăng nhập");
+                return;
+            }
+
             try
             {
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
+
             FXemDiem frmDiem = new FXemDiem(sv.StrMaSV);
             frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             frmDiem.WindowState = FormWindowState.Maximized;
@@ -182,6 +203,7 @@ namespace WFAQuanLyCaNhanSinhVien
             frmEmpty.Controls.Add(lblChaoMung);
 
             frmTongQuan.Close();
+            sv = null;
 
             tmiDangXuatTongQuan.Visible = false;
             tmiDangNhap.Visible = true;
@@ -192,13 +214,19 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiSuKienHoatDong_Click(object sender, EventArgs e)
 {
+            if (sv == null)
+            {
+                MessageBox.Show("Bạn chưa đăng nhập");
+                return;
+            }
+
             try
             {
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
             FDSThoiKhoaBieu dsThoiKhoaBieu;
-            dsThoiKhoaBieu = new FDSThoiKhoaBieu();
+            dsThoiKhoaBieu = new FDSThoiKhoaBieu(sv.StrMaSV);
             dsThoiKhoaBieu.MdiParent = this;
             dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
             dsThoiKhoaBieu.Show();
