@@ -42,7 +42,6 @@
             this.tmiMonHocHT = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiThoiKhoaBieu = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSuKienHoatDong = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiGhiChu = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiBaoCao = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDiemSoBC = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiMonHoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,8 +149,7 @@
             // tmiThoiKhoaBieu
             // 
             this.tmiThoiKhoaBieu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiSuKienHoatDong,
-            this.tmiGhiChu});
+            this.tmiSuKienHoatDong});
             this.tmiThoiKhoaBieu.Name = "tmiThoiKhoaBieu";
             this.tmiThoiKhoaBieu.Size = new System.Drawing.Size(98, 20);
             this.tmiThoiKhoaBieu.Text = "Thời khóa biểu";
@@ -159,14 +157,9 @@
             // tmiSuKienHoatDong
             // 
             this.tmiSuKienHoatDong.Name = "tmiSuKienHoatDong";
-            this.tmiSuKienHoatDong.Size = new System.Drawing.Size(170, 22);
-            this.tmiSuKienHoatDong.Text = "Sự kiện hoạt động";
-            // 
-            // tmiGhiChu
-            // 
-            this.tmiGhiChu.Name = "tmiGhiChu";
-            this.tmiGhiChu.Size = new System.Drawing.Size(170, 22);
-            this.tmiGhiChu.Text = "Ghi chú";
+            this.tmiSuKienHoatDong.Size = new System.Drawing.Size(153, 22);
+            this.tmiSuKienHoatDong.Text = "Thòi khóa biểu";
+            this.tmiSuKienHoatDong.Click += new System.EventHandler(this.tmiSuKienHoatDong_Click);
             // 
             // tmiBaoCao
             // 
@@ -208,13 +201,14 @@
             this.tmiDangXuat,
             this.sửaThôngTinToolStripMenuItem});
             this.cmsAccount.Name = "cmsAccount";
-            this.cmsAccount.Size = new System.Drawing.Size(146, 48);
+            this.cmsAccount.Size = new System.Drawing.Size(153, 70);
             // 
             // tmiDangXuat
             // 
             this.tmiDangXuat.Name = "tmiDangXuat";
-            this.tmiDangXuat.Size = new System.Drawing.Size(145, 22);
+            this.tmiDangXuat.Size = new System.Drawing.Size(152, 22);
             this.tmiDangXuat.Text = "Đăng xuất";
+            this.tmiDangXuat.Click += new System.EventHandler(this.tmiDangXuat_Click);
             // 
             // sửaThôngTinToolStripMenuItem
             // 
@@ -257,7 +251,6 @@
         private System.Windows.Forms.ToolStripMenuItem tmiThoat;
         private System.Windows.Forms.ToolStripMenuItem tmiSuKienHoatDong;
         private System.Windows.Forms.ToolStripMenuItem tmiMonHocHT;
-        private System.Windows.Forms.ToolStripMenuItem tmiGhiChu;
         private System.Windows.Forms.ToolStripMenuItem tmiBaoCao;
         private System.Windows.Forms.ToolStripMenuItem tmiDiemSoBC;
         private System.Windows.Forms.ToolStripMenuItem tmiMonHoc;

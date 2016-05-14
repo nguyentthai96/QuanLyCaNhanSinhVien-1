@@ -53,6 +53,12 @@
     <Compile Include="FDSMonHoc.Designer.cs">
       <DependentUpon>FDSMonHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="FDSThoiKhoaBieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDSThoiKhoaBieu.Designer.cs">
+      <DependentUpon>FDSThoiKhoaBieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FDSMonHoc.resx">
       <DependentUpon>FDSMonHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDSThoiKhoaBieu.resx">
+      <DependentUpon>FDSThoiKhoaBieu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FMainForm.resx">
       <DependentUpon>FMainForm.cs</DependentUpon>
@@ -159,6 +168,10 @@
     <ProjectReference Include="..\QuanLyCaNhanSinhVien_BLL\QuanLyCaNhanSinhVien_BLL.csproj">
       <Project>{a8e1f10f-d043-46d2-b1b0-c2611f9ecd49}</Project>
       <Name>QuanLyCaNhanSinhVien_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuanLyCaNhanSinhVien_DAL\QuanLyCaNhanSinhVien_DAL.csproj">
+      <Project>{1936C66C-D974-4FCF-AB60-FFFF1A5C65D4}</Project>
+      <Name>QuanLyCaNhanSinhVien_DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\QuanLyCaNhanSinhVien_DTO\QuanLyCaNhanSinhVien_DTO.csproj">
       <Project>{5f448fe7-6b17-46c8-a7a7-44890f9ba299}</Project>

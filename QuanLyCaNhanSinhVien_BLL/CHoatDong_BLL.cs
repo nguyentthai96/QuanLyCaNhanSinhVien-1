@@ -39,6 +39,11 @@ namespace QuanLyCaNhanSinhVien_BLL
             return true;
         }
 
+        public List<CHoatDong_DTO> loadLichHocThu(string strMaSV, int iThu)
+        {
+            return new CHoatDong_DAL().loadLichHocThu( strMaSV, iThu);
+        }
+
         public bool themLichHoc(CHoatDong_DTO hd, int iThu, string strMaSV)
         {
             bool b1 = new CHoatDong_DAL().themHoatDongLichHoc(hd);
@@ -49,6 +54,17 @@ namespace QuanLyCaNhanSinhVien_BLL
 
                 bool b2= new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV,iThu, hd.StrMaHD);
             if (b2 == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool xoaLichHocThu(string strMaSV, int iThuSelect, CHoatDong_DTO lichSelect)
+        {
+            ///Chỉ set active off không xóa dữ liệu
+            ///
+            if(new CThoiKhoaBieu_DAL().xoaLichHocThu(strMaSV, iThuSelect, lichSelect.StrMaHD)==false)
             {
                 return false;
             }

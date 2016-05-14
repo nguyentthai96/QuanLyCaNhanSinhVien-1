@@ -36,6 +36,7 @@ create table SinhVien
 	NgaySinh date,
 	DiaChi nvarchar(50),
 	CacThongTin nvarchar(100),
+	HinhAnh image,
 	primary key (MaSV)
 )
 
@@ -88,7 +89,6 @@ create table HoatDong
 	MaHD varchar(10),
 	MaMon varchar(10),
 	ChinhKhoa bit,
-	Tiet int,
 	GioBD datetime,
 	GioKT datetime,
 	GhiChuHD nvarchar(100),
@@ -125,8 +125,8 @@ insert into MonHoc values('NMLT', N'Nhập Môn lập trình',5,5);
 
 go
 
-insert into SinhVien values('MaSV', N'HoTen',0,'1/1/2016','DiaChi',N'CacThongTin');
-insert into SinhVien values('14110182', N'Nguyễn Thành Thái',1,'1/18/1996',N'Đồng Tháp',N'Thông tin');
+insert into SinhVien values('MaSV', N'HoTen',0,'1/1/2016','DiaChi',N'CacThongTin','');
+insert into SinhVien values('14110182', N'Nguyễn Thành Thái',1,'1/18/1996',N'Đồng Tháp',N'Thông tin','');
 
 go
 
@@ -154,11 +154,11 @@ insert into DiemSo values('14110182', 'MCSDL', 'HK3', 'D02', 1, 10, '1/3/2016');
 
 go
 
-insert into HoatDong values ('MaHD', 'MaMon', 1, 2,'10:2','14:2','GhiChuHD');
-insert into HoatDong values ('HD01', 'MDBMS', 1, 2,'10:2','14:2','GhiChuHD');
-insert into HoatDong values ('HD02', 'MCSDL', 1, 2,'10:2','14:2','GhiChuHD');
-insert into HoatDong values ('HD03', 'MCSDL', 0, 2,'10:2','14:2','Ôn Thi');
-insert into HoatDong values ('HD04', 'MCSDL', 0, 2,'10:2','14:2','Ôn thi');
+insert into HoatDong values ('MaHD', 'MaMon', 1,'10:2','14:2','GhiChuHD',2);
+insert into HoatDong values ('HD01', 'MDBMS', 1,'10:2','14:2','GhiChuHD',2);
+insert into HoatDong values ('HD02', 'MCSDL', 1, '10:2','14:2','GhiChuHD',3);
+insert into HoatDong values ('HD03', 'MCSDL', 0, '10:2','14:2','Ôn Thi',3);
+insert into HoatDong values ('HD04', 'MCSDL', 0, '10:2','14:2','Ôn thi',3);
 
 go
 

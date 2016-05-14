@@ -12,7 +12,12 @@ namespace QuanLyCaNhanSinhVien_DTO
         private string strMaSV;
         private int iThu;
         private string strMaHD;
-
+        public CThoiKhoaBieu_DTO(string strMaSV, int iThu, string strMaHD)
+        {
+            this.strMaSV = strMaSV;
+            this.iThu = iThu;
+            this.strMaHD = strMaHD;
+        }
         public string StrMaSV
         {
             get

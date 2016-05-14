@@ -23,7 +23,7 @@ namespace QuanLyCaNhanSinhVien_DAL
             foreach (DataRow dr in dtb.Rows)
             {
                 CHoatDong_DTO hd = new CHoatDong_DTO(dr["MaHD"].ToString(), dr["MaMon"].ToString(), bool.Parse(dr["ChinhKhoa"].ToString()), 
-                        int.Parse(dr["Tiet"].ToString()), DateTime.Parse( dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString());
+                        DateTime.Parse( dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString());
                 lists.Add(hd);
             }
 
@@ -32,8 +32,8 @@ namespace QuanLyCaNhanSinhVien_DAL
 
         public bool themHoatDongLichHoc(CHoatDong_DTO hoatDong)
         {
-            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', N'{6}', '{7}')", hoatDong.StrMaHD, hoatDong.StrMaMon,
-                   hoatDong.BChinhKhoa, hoatDong.ITiet, hoatDong.DtmGioBD, hoatDong.DtmGioKT, hoatDong.StrGhiChuHD, hoatDong.ClorMauMucDo.ToArgb());
+            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', N'{5}', '{6}')", hoatDong.StrMaHD, hoatDong.StrMaMon,
+                   hoatDong.BChinhKhoa, hoatDong.DtmGioBD, hoatDong.DtmGioKT, hoatDong.StrGhiChuHD, hoatDong.ClorMauMucDo.ToArgb());
             string error = "";
             new CDataProvider_DAL().excuteNonQuery(strAddHoatDong, ref error);
             if (error != "")
@@ -43,10 +43,33 @@ namespace QuanLyCaNhanSinhVien_DAL
             return true;
         }
 
+        public List<CHoatDong_DTO> loadLichHocThu(string strMaSV, int iThu)
+        {     
+            string strSelectHoatDong = @"select * from ThoiKhoaBieu, HoatDong where ThoiKhoaBieu.MaHD=HoatDong.MaHD and ChinhKhoa='1' and Thu='" + iThu + "'" + " and MaSV='" + strMaSV + "'";
+
+            DataTable dtb = new DataTable();
+            dtb = new CDataProvider_DAL().getDataTableExcuteQuery("tbHoatDongTKBMon", strSelectHoatDong);
+
+            if (dtb.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            List<CHoatDong_DTO> lists = new List<CHoatDong_DTO>();
+            foreach (DataRow dr in dtb.Rows)
+            {
+                CHoatDong_DTO hd = new CHoatDong_DTO(dr["MaHD"].ToString(), dr["MaMon"].ToString(), bool.Parse(dr["ChinhKhoa"].ToString()),
+                        DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString(), int.Parse(dr["MauMucDo"].ToString() == "" ? "0" : dr["MauMucDo"].ToString()));
+                lists.Add(hd);
+            }
+
+            return lists;
+        }
+
         public bool themHoatDong(CHoatDong_DTO hoatDong)
         {
-            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', N'{6}', 0)",hoatDong.StrMaHD, hoatDong.StrMaMon,
-                    hoatDong.BChinhKhoa, hoatDong.ITiet, hoatDong.DtmGioBD, hoatDong.DtmGioKT, hoatDong.StrGhiChuHD);
+            string strAddHoatDong = string.Format("insert into HoatDong values('{0}', '{1}', '{2}', '{3}', '{4}', N'{5}','')",hoatDong.StrMaHD, hoatDong.StrMaMon,
+                    hoatDong.BChinhKhoa, hoatDong.DtmGioBD, hoatDong.DtmGioKT, hoatDong.StrGhiChuHD);
             string error="";
             new CDataProvider_DAL().excuteNonQuery(strAddHoatDong,ref error);
             if (error != "")
@@ -67,7 +90,7 @@ namespace QuanLyCaNhanSinhVien_DAL
         public List<CHoatDong_DTO> loadLichHocTrongNgay(string strMaSV)
         {
             DayOfWeek dThu=DateTime.Now.DayOfWeek;
-            int iThu=dThu.GetHashCode();
+            int iThu=dThu.GetHashCode()+1;
             string strSelectHoatDong = @"select * from ThoiKhoaBieu, HoatDong where ThoiKhoaBieu.MaHD=HoatDong.MaHD and ChinhKhoa='1' and Thu='"+iThu+"'"+" and MaSV='"+strMaSV+"'";
 
             DataTable dtb = new DataTable();
@@ -82,7 +105,7 @@ namespace QuanLyCaNhanSinhVien_DAL
             foreach (DataRow dr in dtb.Rows)
             {
                 CHoatDong_DTO hd = new CHoatDong_DTO(dr["MaHD"].ToString(), dr["MaMon"].ToString(), bool.Parse(dr["ChinhKhoa"].ToString()),
-                        int.Parse(dr["Tiet"].ToString()), DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString(), int.Parse(dr["MauMucDo"].ToString()==""?"0":dr["MauMucDo"].ToString()));
+                   DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString(), int.Parse(dr["MauMucDo"].ToString()==""?"0":dr["MauMucDo"].ToString()));
                 lists.Add(hd);
             }
 
@@ -101,7 +124,7 @@ namespace QuanLyCaNhanSinhVien_DAL
             foreach (DataRow dr in dtb.Rows)
             {
                 CHoatDong_DTO hd = new CHoatDong_DTO(dr["MaHD"].ToString(), dr["MaMon"].ToString(), bool.Parse(dr["ChinhKhoa"].ToString()),
-                        int.Parse(dr["Tiet"].ToString()), DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString());
+                        DateTime.Parse(dr["GioBD"].ToString()), DateTime.Parse(dr["GioKT"].ToString()), dr["GhiChuHD"].ToString());
                 lists.Add(hd);
             }
 

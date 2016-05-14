@@ -201,5 +201,14 @@ namespace WFAQuanLyCaNhanSinhVien
             linesTableUC.lists = listSuKienUC;
             linesTableUC.loadUserControl();
         }
+        FDSThoiKhoaBieu dsThoiKhoaBieu;
+        private void tmiThoiKhoaBieu_Click(object sender, EventArgs e)
+        {
+            dsThoiKhoaBieu = new FDSThoiKhoaBieu();
+            dsThoiKhoaBieu.MdiParent= this.ParentForm;
+            dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
+            dsThoiKhoaBieu.Show();
+            this.Close();
+        }
     }
 }

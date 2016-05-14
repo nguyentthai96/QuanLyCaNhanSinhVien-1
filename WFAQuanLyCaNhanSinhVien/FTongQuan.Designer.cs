@@ -34,6 +34,8 @@ namespace WFAQuanLyCaNhanSinhVien
             this.components = new System.ComponentModel.Container();
             this.lblChaoMung = new System.Windows.Forms.Label();
             this.pnlCacSuKien = new System.Windows.Forms.Panel();
+            this.cmsSuKienHomNay = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiThemSuKien = new System.Windows.Forms.ToolStripMenuItem();
             this.lblThoiGian = new System.Windows.Forms.Label();
             this.lblThongTin = new System.Windows.Forms.Label();
             this.lblNext = new System.Windows.Forms.Label();
@@ -43,11 +45,9 @@ namespace WFAQuanLyCaNhanSinhVien
             this.cmsMonHocHomNay = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiThemLich = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiThoiKhoaBieu = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsSuKienHomNay = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tmiThemSuKien = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlCacSuKien.SuspendLayout();
-            this.cmsMonHocHomNay.SuspendLayout();
             this.cmsSuKienHomNay.SuspendLayout();
+            this.cmsMonHocHomNay.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblChaoMung
@@ -75,6 +75,20 @@ namespace WFAQuanLyCaNhanSinhVien
             this.pnlCacSuKien.Name = "pnlCacSuKien";
             this.pnlCacSuKien.Size = new System.Drawing.Size(320, 252);
             this.pnlCacSuKien.TabIndex = 1;
+            // 
+            // cmsSuKienHomNay
+            // 
+            this.cmsSuKienHomNay.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiThemSuKien});
+            this.cmsSuKienHomNay.Name = "cmsSuKienHomNay";
+            this.cmsSuKienHomNay.Size = new System.Drawing.Size(147, 26);
+            // 
+            // tmiThemSuKien
+            // 
+            this.tmiThemSuKien.Name = "tmiThemSuKien";
+            this.tmiThemSuKien.Size = new System.Drawing.Size(146, 22);
+            this.tmiThemSuKien.Text = "Thêm Sự kiện";
+            this.tmiThemSuKien.Click += new System.EventHandler(this.tmiThemSuKien_Click);
             // 
             // lblThoiGian
             // 
@@ -150,7 +164,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.tmiThemLich,
             this.tmiThoiKhoaBieu});
             this.cmsMonHocHomNay.Name = "cmsMonHocHomNay";
-            this.cmsMonHocHomNay.Size = new System.Drawing.Size(154, 48);
+            this.cmsMonHocHomNay.Size = new System.Drawing.Size(154, 70);
             // 
             // tmiThemLich
             // 
@@ -164,20 +178,7 @@ namespace WFAQuanLyCaNhanSinhVien
             this.tmiThoiKhoaBieu.Name = "tmiThoiKhoaBieu";
             this.tmiThoiKhoaBieu.Size = new System.Drawing.Size(153, 22);
             this.tmiThoiKhoaBieu.Text = "Thời khóa biểu";
-            // 
-            // cmsSuKienHomNay
-            // 
-            this.cmsSuKienHomNay.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiThemSuKien});
-            this.cmsSuKienHomNay.Name = "cmsSuKienHomNay";
-            this.cmsSuKienHomNay.Size = new System.Drawing.Size(147, 26);
-            // 
-            // tmiThemSuKien
-            // 
-            this.tmiThemSuKien.Name = "tmiThemSuKien";
-            this.tmiThemSuKien.Size = new System.Drawing.Size(152, 22);
-            this.tmiThemSuKien.Text = "Thêm Sự kiện";
-            this.tmiThemSuKien.Click += new System.EventHandler(this.tmiThemSuKien_Click);
+            this.tmiThoiKhoaBieu.Click += new System.EventHandler(this.tmiThoiKhoaBieu_Click);
             // 
             // FTongQuan
             // 
@@ -192,8 +193,8 @@ namespace WFAQuanLyCaNhanSinhVien
             this.Load += new System.EventHandler(this.FTongQuan_Load);
             this.SizeChanged += new System.EventHandler(this.FTongQuan_SizeChanged);
             this.pnlCacSuKien.ResumeLayout(false);
-            this.cmsMonHocHomNay.ResumeLayout(false);
             this.cmsSuKienHomNay.ResumeLayout(false);
+            this.cmsMonHocHomNay.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

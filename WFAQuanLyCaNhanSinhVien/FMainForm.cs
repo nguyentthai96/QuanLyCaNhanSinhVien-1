@@ -65,6 +65,13 @@ namespace WFAQuanLyCaNhanSinhVien
                 return;
             }
             frmEmpty.Dispose();
+            frmEmpty.Close();
+            try
+            {
+                this.ActiveMdiChild.Close();
+            }
+            catch (Exception) { }
+
             lblTenSV.Text = sv.StrHoTen;
             lblTenSV.Location=new Point(this.Size.Width-75- lblTenSV.Width,lblTenSV.Location.Y);
             frmTongQuan = new FTongQuan(sv.StrMaSV);
@@ -73,7 +80,7 @@ namespace WFAQuanLyCaNhanSinhVien
             frmTongQuan.MdiParent = this;
             frmTongQuan.Show();
 
-            frmEmpty.Close();
+           
             tmiDangNhap.Visible = false;
             ttxtMatKhau.Visible = false;
             ttxtTaiKhoan.Visible = false;
@@ -116,9 +123,9 @@ namespace WFAQuanLyCaNhanSinhVien
 
             tmiDangXuatTongQuan.Visible = false;
             ///TODO Thu dang nhap nhanh
-            ttxtTaiKhoan.Text = "14110182";
-            ttxtMatKhau.Text = "ntt";
-            tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+            //ttxtTaiKhoan.Text = "14110182";
+            //ttxtMatKhau.Text = "ntt";
+            //tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
         }
 
         private void FMainForm_SizeChanged(object sender, EventArgs e)
@@ -138,6 +145,11 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiDiemSoHT_Click(object sender, EventArgs e)
         {
+            try
+            {
+                this.ActiveMdiChild.Close();
+            }
+            catch (Exception) { }
             FXemDiem frmDiem = new FXemDiem(sv.StrMaSV);
             frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             frmDiem.WindowState = FormWindowState.Maximized;
@@ -153,6 +165,71 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiDangCuatTongQuan_Click(object sender, EventArgs e)
         {
+            frmEmpty = new Form();
+            frmEmpty.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            frmEmpty.WindowState = FormWindowState.Maximized;
+            frmEmpty.MdiParent = this;
+            frmEmpty.StartPosition = FormStartPosition.CenterParent;
+            frmEmpty.Show();
+
+            lblChaoMung = new Label();
+            lblChaoMung.Text = "Bạn phải đăng nhập để thao tác với phần mềm.";
+            lblChaoMung.Font = new Font("", 40, FontStyle.Bold, GraphicsUnit.Point);
+            lblChaoMung.AutoSize = false;
+            lblChaoMung.Size = frmEmpty.Size;
+            lblChaoMung.ForeColor = Color.Green;
+            lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
+            frmEmpty.Controls.Add(lblChaoMung);
+
+            frmTongQuan.Close();
+
+            tmiDangXuatTongQuan.Visible = false;
+            tmiDangNhap.Visible = true;
+            ttxtMatKhau.Visible = true;
+            ttxtTaiKhoan.Visible = true;
+            lblTenSV.Visible = false;
+        }
+
+        private void tmiSuKienHoatDong_Click(object sender, EventArgs e)
+{
+            try
+            {
+                this.ActiveMdiChild.Close();
+            }
+            catch (Exception) { }
+            FDSThoiKhoaBieu dsThoiKhoaBieu;
+            dsThoiKhoaBieu = new FDSThoiKhoaBieu();
+            dsThoiKhoaBieu.MdiParent = this;
+            dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
+            dsThoiKhoaBieu.Show();
+           
+        }
+
+        private void tmiDangXuat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ActiveMdiChild.Close();
+            }
+            catch (Exception) { }
+            frmEmpty = new Form();
+            frmEmpty.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            frmEmpty.WindowState = FormWindowState.Maximized;
+            frmEmpty.MdiParent = this;
+            frmEmpty.StartPosition = FormStartPosition.CenterParent;
+            frmEmpty.Show();
+
+            lblChaoMung = new Label();
+            lblChaoMung.Text = "Bạn phải đăng nhập để thao tác với phần mềm.";
+            lblChaoMung.Font = new Font("", 40, FontStyle.Bold, GraphicsUnit.Point);
+            lblChaoMung.AutoSize = false;
+            lblChaoMung.Size = frmEmpty.Size;
+            lblChaoMung.ForeColor = Color.Green;
+            lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
+            frmEmpty.Controls.Add(lblChaoMung);
+
+            frmTongQuan.Close();
+
             tmiDangXuatTongQuan.Visible = false;
             tmiDangNhap.Visible = true;
             ttxtMatKhau.Visible = true;

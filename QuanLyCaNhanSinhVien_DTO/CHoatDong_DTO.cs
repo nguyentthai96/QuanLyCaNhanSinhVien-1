@@ -12,27 +12,24 @@ namespace QuanLyCaNhanSinhVien_DTO
         private string strMaHD;
         private string strMaMon;
         private bool bChinhKhoa;
-        private int iTiet;
         private DateTime dtmGioBD;
         private DateTime dtmGioKT;
         private string strGhiChuHD;
         private int iMauMucDo;
-        public CHoatDong_DTO(string strMaHD, string strMaMon, bool bChinhKhoa, int iTiet, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChuHD)
+        public CHoatDong_DTO(string strMaHD, string strMaMon, bool bChinhKhoa, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChuHD)
         {
             this.strMaHD = strMaHD;
             this.strMaMon = strMaMon;
             this.bChinhKhoa = bChinhKhoa;
-            this.iTiet = iTiet;
             this.dtmGioBD = dtmGioBD;
             this.dtmGioKT = dtmGioKT;
             this.strGhiChuHD = strGhiChuHD;
         }
-        public CHoatDong_DTO(string strMaHD, string strMaMon, bool bChinhKhoa, int iTiet, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChuHD, int iMucDoMau)
+        public CHoatDong_DTO(string strMaHD, string strMaMon, bool bChinhKhoa, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChuHD, int iMucDoMau)
         {
             this.strMaHD = strMaHD;
             this.strMaMon = strMaMon;
             this.bChinhKhoa = bChinhKhoa;
-            this.iTiet = iTiet;
             this.dtmGioBD = dtmGioBD;
             this.dtmGioKT = dtmGioKT;
             this.strGhiChuHD = strGhiChuHD;
@@ -74,19 +71,6 @@ namespace QuanLyCaNhanSinhVien_DTO
             set
             {
                 this.bChinhKhoa = value;
-            }
-        }
-
-        public int ITiet
-        {
-            get
-            {
-                return iTiet;
-            }
-
-            set
-            {
-                this.iTiet = value;
             }
         }
 

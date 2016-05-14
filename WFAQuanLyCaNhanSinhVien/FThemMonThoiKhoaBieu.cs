@@ -21,8 +21,8 @@ namespace WFAQuanLyCaNhanSinhVien
         }
         public FThemMonThoiKhoaBieu(string strMaSV)
         {
-            InitializeComponent();
             this.strMaSV = strMaSV;
+            InitializeComponent();
         }
 
         private void lblMauLich_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace WFAQuanLyCaNhanSinhVien
         private void btnThem_Click(object sender, EventArgs e)
         {
             CHoatDong_DTO hd = layDuLieuTuFrom();
-            int iThu = (int)numbThu.Value-1;
+            int iThu = (int)numbThu.Value;
             if(new CHoatDong_BLL().themLichHoc(hd,iThu, strMaSV)==false)
             {
                 MessageBox.Show("Thêm lỗi");
@@ -64,7 +64,7 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             CHoatDong_DTO hd;
             int iCoutHD = new CHoatDong_BLL().countHoatDong();
-            hd = new CHoatDong_DTO("HD"+iCoutHD, cmbMonHoc.SelectedValue.ToString(), true, (int)numbTiet.Value, dtmpTu.Value, dtmpDen.Value, txtMoTa.Text,lblMauLich.BackColor.ToArgb());
+            hd = new CHoatDong_DTO("HD"+iCoutHD, cmbMonHoc.SelectedValue.ToString(), true, dtmpTu.Value, dtmpDen.Value, txtMoTa.Text,lblMauLich.BackColor.ToArgb());
             return hd;
         }
 

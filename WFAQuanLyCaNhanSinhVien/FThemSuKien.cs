@@ -35,7 +35,7 @@ namespace WFAQuanLyCaNhanSinhVien
         private void btnThem_Click(object sender, EventArgs e)
         {
             int iCountHD = new CHoatDong_BLL().countHoatDong();
-            CHoatDong_DTO hoatDong = new CHoatDong_DTO("HD" + iCountHD, cmbMonHoc.SelectedValue.ToString(), false,1,
+            CHoatDong_DTO hoatDong = new CHoatDong_DTO("HD" + iCountHD, cmbMonHoc.SelectedValue.ToString(), false,
                     DateTime.Parse(dtmpNgayBatDau.Value.ToShortDateString() +" "+ dtmpThoiGianBatDau.Value.ToShortTimeString()),
                     DateTime.Parse( dtmpNgayDen.Value.ToShortDateString() +" "+ dtmpThoiGianDen.Value.ToShortTimeString()), txtMoTa.Text);
             if (hoatDong.DtmGioBD>hoatDong.DtmGioKT)
