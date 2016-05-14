@@ -141,6 +141,7 @@ namespace WFAQuanLyCaNhanSinhVien
         private void tmiThemSuKien_Click(object sender, EventArgs e)
         {
             FThemSuKien frm = new FThemSuKien(strMaSV);
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowDialog();
             suKiens = new CHoatDong_BLL().loadSuKienTrongNgay(strMaSV);
             indexSuKien = -1;
@@ -195,6 +196,7 @@ namespace WFAQuanLyCaNhanSinhVien
         private void tmiThemLich_Click(object sender, EventArgs e)
         {
             FThemMonThoiKhoaBieu thoiKhoaBieu = new FThemMonThoiKhoaBieu(strMaSV);
+            thoiKhoaBieu.StartPosition = FormStartPosition.CenterScreen;
             thoiKhoaBieu.ShowDialog();
 
             loadLichHocTrongNgay();

@@ -138,10 +138,10 @@ namespace WFAQuanLyCaNhanSinhVien
 
 
             tmiDangXuatTongQuan.Visible = false;
-            ///TODO Thu dang nhap nhanh
-            ttxtTaiKhoan.Text = "14110182";
-            ttxtMatKhau.Text = "ntt";
-            tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+            /////TODO Thu dang nhap nhanh
+            //ttxtTaiKhoan.Text = "14110182";
+            //ttxtMatKhau.Text = "ntt";
+            //tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
            
         }
 
@@ -154,7 +154,9 @@ namespace WFAQuanLyCaNhanSinhVien
         private void sửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            new FThemSinhVien(sv).ShowDialog();
+            FThemSinhVien frmSuaThongTin = new FThemSinhVien(sv);
+            frmSuaThongTin.StartPosition = FormStartPosition.CenterParent;
+            frmSuaThongTin.ShowDialog();
             sv = new CSinhVien_BLL().loadTTSV(sv.StrMaSV) ;
             lblTenSV.Text = sv.StrHoTen;
             FMainForm_SizeChanged(this, new EventArgs());

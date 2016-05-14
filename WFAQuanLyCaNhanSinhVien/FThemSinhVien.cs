@@ -49,7 +49,6 @@ namespace WFAQuanLyCaNhanSinhVien
             CSinhVien_DTO sv = new CSinhVien_DTO(txtMaSinhVien.Text, txtHoTen.Text,rdoNam.Checked,dtmpNgaySinh.Value.Date,txtDiaChi.Text,txtThongTinKhac.Text);
             if (new CSinhVien_BLL().themSinhVien(sv))
             {
-                MessageBox.Show("Thêm Thành công.");
                 #region Tạo account để sử dụng
                 FDangKyTaiKhoan frmDangKyTaiKhoan = new FDangKyTaiKhoan(sv.StrMaSV);
                 frmDangKyTaiKhoan.StartPosition = FormStartPosition.CenterParent;

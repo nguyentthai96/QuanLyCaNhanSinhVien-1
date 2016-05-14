@@ -25,10 +25,18 @@ namespace WFAQuanLyCaNhanSinhVien
         private void FXemDiem_Load(object sender, EventArgs e)
         {
             loadComboBox();
-            if (lists != null)
+            try
             {
-                loadDSDiemMon(lists[0].Item1);
+                if (lists != null)
+                {
+                    loadDSDiemMon(lists[0].Item1);
+                }
             }
+            catch (Exception)
+            {
+                //Todo catch empty
+            }
+            
         }
         public List<Tuple<string, string, string,string >> lists;
         private bool loadComboBox()
