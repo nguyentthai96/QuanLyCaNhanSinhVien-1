@@ -137,9 +137,10 @@ namespace WFAQuanLyCaNhanSinhVien
 
             tmiDangXuatTongQuan.Visible = false;
             ///TODO Thu dang nhap nhanh
-            //ttxtTaiKhoan.Text = "14110182";
-            //ttxtMatKhau.Text = "ntt";
-            //tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+            ttxtTaiKhoan.Text = "14110182";
+            ttxtMatKhau.Text = "ntt";
+            tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+           
         }
 
         private void FMainForm_SizeChanged(object sender, EventArgs e)
@@ -263,6 +264,19 @@ namespace WFAQuanLyCaNhanSinhVien
             ttxtMatKhau.Visible = true;
             ttxtTaiKhoan.Visible = true;
             lblTenSV.Visible = false;
+        }
+
+        private void tmiDiemSoBC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ActiveMdiChild.Close();
+            }
+            catch (Exception) { }
+            FReportDiem fr = new FReportDiem(sv);
+            fr.WindowState = FormWindowState.Maximized;
+            fr.MdiParent = this;
+            fr.Show();
         }
     }
 }

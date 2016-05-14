@@ -25,6 +25,10 @@ namespace QuanLyCaNhanSinhVien_BLL
         {
             return new CDiemSo_DAL().loadDSDiemMon(strMaMon, strMaSV);
         }
+        public List<CDiemSo_DTO> loadDSDiemMon(string strMaSV)
+        {
+            return new CDiemSo_DAL().loadDSDiemMon( strMaSV);
+        }
 
         public bool suaDiem(CDiemSo_DTO diem)
         {

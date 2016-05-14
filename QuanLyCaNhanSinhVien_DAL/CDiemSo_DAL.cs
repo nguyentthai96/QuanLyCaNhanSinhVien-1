@@ -83,5 +83,22 @@ namespace QuanLyCaNhanSinhVien_DAL
             }
             return list;
         }
+
+        public List<CDiemSo_DTO> loadDSDiemMon(string strMaSV)
+        {
+            string strSelectDiem = "select * from DiemSo where MaSV='" + strMaSV + "'";
+
+            DataTable dtb = new DataTable();
+            dtb = new CDataProvider_DAL().getDataTableExcuteQuery("tbDiemSo", strSelectDiem);
+
+            List<CDiemSo_DTO> list = new List<CDiemSo_DTO>();
+            foreach (DataRow dr in dtb.Rows)
+            {
+                CDiemSo_DTO diem = new CDiemSo_DTO(dr["MaMon"].ToString(), dr["MaSV"].ToString(), dr["MaHK"].ToString(), dr["MaDiem"].ToString(), float.Parse(dr["SoDiem"].ToString()), float.Parse(dr["HeSo"].ToString()), DateTime.Parse(dr["NgayDiem"].ToString()));
+                diem.StrTenMon = new CMonHoc_DAL().loadTenMon(diem.StrMaMon);
+                list.Add(diem);
+            }
+            return list;
+        }
     }
 }

@@ -33,8 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,6 +67,12 @@
     </Compile>
     <Compile Include="FMainForm.Designer.cs">
       <DependentUpon>FMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FReportDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FReportDiem.Designer.cs">
+      <DependentUpon>FReportDiem.cs</DependentUpon>
     </Compile>
     <Compile Include="FThemMonThoiKhoaBieu.cs">
       <SubType>Form</SubType>
@@ -121,6 +130,9 @@
     <EmbeddedResource Include="FNhapDiem.resx">
       <DependentUpon>FNhapDiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FReportDiem.resx">
+      <DependentUpon>FReportDiem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FSuaDiem.resx">
       <DependentUpon>FSuaDiem.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +160,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReportDiem.rdlc" />
+    <None Include="Properties\DataSources\QuanLyCaNhanSinhVien_DTO.CDiemSo_DTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

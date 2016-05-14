@@ -9,6 +9,7 @@ namespace QuanLyCaNhanSinhVien_DTO
   public class CDiemSo_DTO
     {
         private string strMaMon;
+        private string strTenMon;
         private string strMaSV;
         private string strMaHK;
         private string strMaDiem;
@@ -25,8 +26,18 @@ namespace QuanLyCaNhanSinhVien_DTO
             this.fSoDiem = fSoDiem;
             this.fHeSo = fHeSo;
             this.dtmNgayDiem = dtmNgayDiem;
-        }  
-
+        }
+        public CDiemSo_DTO(string strMaMon, string strTenMon, string strMaSV, string strMaHK, string strMaDiem, float fSoDiem, float fHeSo, DateTime dtmNgayDiem)
+        {
+            this.strMaMon = strMaMon;
+            this.strTenMon = strTenMon;
+            this.strMaSV = strMaSV;
+            this.StrMaHK = strMaHK;
+            this.strMaDiem = strMaDiem;
+            this.fSoDiem = fSoDiem;
+            this.fHeSo = fHeSo;
+            this.dtmNgayDiem = dtmNgayDiem;
+        }
         public string StrMaMon
         {
             get
@@ -115,6 +126,19 @@ namespace QuanLyCaNhanSinhVien_DTO
             set
             {
                 this.strMaHK = value;
+            }
+        }
+
+        public string StrTenMon
+        {
+            get
+            {
+                return strTenMon;
+            }
+
+            set
+            {
+                this.strTenMon = value;
             }
         }
     }

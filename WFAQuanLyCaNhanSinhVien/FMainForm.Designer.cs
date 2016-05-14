@@ -43,7 +43,6 @@
             this.tmiSuKienHoatDong = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiBaoCao = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDiemSoBC = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiMonHoc = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTenSV = new System.Windows.Forms.Label();
             this.cmsAccount = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiDangXuat = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,7 +133,7 @@
             // tmiDiemSoHT
             // 
             this.tmiDiemSoHT.Name = "tmiDiemSoHT";
-            this.tmiDiemSoHT.Size = new System.Drawing.Size(122, 22);
+            this.tmiDiemSoHT.Size = new System.Drawing.Size(117, 22);
             this.tmiDiemSoHT.Text = "Điểm số";
             this.tmiDiemSoHT.Click += new System.EventHandler(this.tmiDiemSoHT_Click);
             // 
@@ -156,8 +155,7 @@
             // tmiBaoCao
             // 
             this.tmiBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiDiemSoBC,
-            this.tmiMonHoc});
+            this.tmiDiemSoBC});
             this.tmiBaoCao.Name = "tmiBaoCao";
             this.tmiBaoCao.Size = new System.Drawing.Size(61, 20);
             this.tmiBaoCao.Text = "Báo cáo";
@@ -165,14 +163,9 @@
             // tmiDiemSoBC
             // 
             this.tmiDiemSoBC.Name = "tmiDiemSoBC";
-            this.tmiDiemSoBC.Size = new System.Drawing.Size(122, 22);
+            this.tmiDiemSoBC.Size = new System.Drawing.Size(152, 22);
             this.tmiDiemSoBC.Text = "Điểm số";
-            // 
-            // tmiMonHoc
-            // 
-            this.tmiMonHoc.Name = "tmiMonHoc";
-            this.tmiMonHoc.Size = new System.Drawing.Size(122, 22);
-            this.tmiMonHoc.Text = "Môn học";
+            this.tmiDiemSoBC.Click += new System.EventHandler(this.tmiDiemSoBC_Click);
             // 
             // lblTenSV
             // 
@@ -198,7 +191,7 @@
             // tmiDangXuat
             // 
             this.tmiDangXuat.Name = "tmiDangXuat";
-            this.tmiDangXuat.Size = new System.Drawing.Size(152, 22);
+            this.tmiDangXuat.Size = new System.Drawing.Size(145, 22);
             this.tmiDangXuat.Text = "Đăng xuất";
             this.tmiDangXuat.Click += new System.EventHandler(this.tmiDangXuat_Click);
             // 
@@ -244,7 +237,6 @@
         private System.Windows.Forms.ToolStripMenuItem tmiSuKienHoatDong;
         private System.Windows.Forms.ToolStripMenuItem tmiBaoCao;
         private System.Windows.Forms.ToolStripMenuItem tmiDiemSoBC;
-        private System.Windows.Forms.ToolStripMenuItem tmiMonHoc;
         private System.Windows.Forms.Label lblTenSV;
         private System.Windows.Forms.ContextMenuStrip cmsAccount;
         private System.Windows.Forms.ToolStripMenuItem tmiDangXuat;
