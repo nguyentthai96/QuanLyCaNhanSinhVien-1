@@ -82,6 +82,8 @@ namespace WFAQuanLyCaNhanSinhVien
 
            
             tmiDangNhap.Visible = false;
+            đăngKýToolStripMenuItem.Visible = false;
+
             ttxtMatKhau.Visible = false;
             ttxtTaiKhoan.Visible = false;
             tmiDangXuatTongQuan.Visible = true;
@@ -208,6 +210,7 @@ namespace WFAQuanLyCaNhanSinhVien
 
             tmiDangXuatTongQuan.Visible = false;
             tmiDangNhap.Visible = true;
+            đăngKýToolStripMenuItem.Visible = true;
             ttxtMatKhau.Visible = true;
             ttxtTaiKhoan.Visible = true;
             lblTenSV.Visible = false;
@@ -241,6 +244,7 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
+            sv = null;
             frmEmpty = new Form();
             frmEmpty.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             frmEmpty.WindowState = FormWindowState.Maximized;
@@ -260,6 +264,7 @@ namespace WFAQuanLyCaNhanSinhVien
             frmTongQuan.Close();
 
             tmiDangXuatTongQuan.Visible = false;
+            đăngKýToolStripMenuItem.Visible = true;
             tmiDangNhap.Visible = true;
             ttxtMatKhau.Visible = true;
             ttxtTaiKhoan.Visible = true;
@@ -277,6 +282,13 @@ namespace WFAQuanLyCaNhanSinhVien
             fr.WindowState = FormWindowState.Maximized;
             fr.MdiParent = this;
             fr.Show();
+        }
+
+        private void đăngKýToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FThemSinhVien frmThemSinhVien= new FThemSinhVien();
+            frmThemSinhVien.StartPosition = FormStartPosition.CenterParent;
+            frmThemSinhVien.ShowDialog();
         }
     }
 }

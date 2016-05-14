@@ -19,5 +19,10 @@ namespace QuanLyCaNhanSinhVien_BLL
             sv = new CSinhVien_DAL().loadThongTinSV(strMaSV);
             return sv;
         }
+
+        public bool addAcountSinhVien(string strTaiKhoan, string strMatKhau)
+        {
+            return new CAccountSinhVien_DAL().addAcountSinhVien(strTaiKhoan, strMatKhau);
+        }
     }
 }

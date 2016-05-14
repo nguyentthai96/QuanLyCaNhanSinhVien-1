@@ -19,5 +19,17 @@ namespace QuanLyCaNhanSinhVien_DAL
 
             return iCount;
         }
+
+        public bool addAcountSinhVien(string strTaiKhoan, string strMatKhau)
+        {
+            string strAddAcc = string.Format("insert into AccountSinhVien values('{0}', N'{1}')", strTaiKhoan, strMatKhau);
+
+            string error = "";
+            if (new CDataProvider_DAL().excuteNonQuery(strAddAcc, ref error)==false)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

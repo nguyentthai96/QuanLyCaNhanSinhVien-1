@@ -34,6 +34,7 @@
             this.ttxtTaiKhoan = new System.Windows.Forms.ToolStripTextBox();
             this.ttxtMatKhau = new System.Windows.Forms.ToolStripTextBox();
             this.tmiDangNhap = new System.Windows.Forms.ToolStripMenuItem();
+            this.đăngKýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDangXuatTongQuan = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiThoat = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +72,7 @@
             this.ttxtTaiKhoan,
             this.ttxtMatKhau,
             this.tmiDangNhap,
+            this.đăngKýToolStripMenuItem,
             this.tmiDangXuatTongQuan,
             this.toolStripSeparator1,
             this.tmiThoat});
@@ -102,6 +104,13 @@
             this.tmiDangNhap.Size = new System.Drawing.Size(160, 22);
             this.tmiDangNhap.Text = "Đăng nhập";
             this.tmiDangNhap.Click += new System.EventHandler(this.tmiDangNhap_Click);
+            // 
+            // đăngKýToolStripMenuItem
+            // 
+            this.đăngKýToolStripMenuItem.Name = "đăngKýToolStripMenuItem";
+            this.đăngKýToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.đăngKýToolStripMenuItem.Text = "Đăng ký";
+            this.đăngKýToolStripMenuItem.Click += new System.EventHandler(this.đăngKýToolStripMenuItem_Click);
             // 
             // tmiDangXuatTongQuan
             // 
@@ -163,7 +172,7 @@
             // tmiDiemSoBC
             // 
             this.tmiDiemSoBC.Name = "tmiDiemSoBC";
-            this.tmiDiemSoBC.Size = new System.Drawing.Size(152, 22);
+            this.tmiDiemSoBC.Size = new System.Drawing.Size(117, 22);
             this.tmiDiemSoBC.Text = "Điểm số";
             this.tmiDiemSoBC.Click += new System.EventHandler(this.tmiDiemSoBC_Click);
             // 
@@ -213,6 +222,7 @@
             this.MainMenuStrip = this.Menu;
             this.Name = "FMainForm";
             this.Text = "Quản lý Cá nhân Sinh viên";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FMainForm_Load);
             this.SizeChanged += new System.EventHandler(this.FMainForm_SizeChanged);
             this.Menu.ResumeLayout(false);
@@ -242,6 +252,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiDangXuat;
         private System.Windows.Forms.ToolStripMenuItem sửaThôngTinToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tmiDangXuatTongQuan;
+        private System.Windows.Forms.ToolStripMenuItem đăngKýToolStripMenuItem;
     }
 }
 

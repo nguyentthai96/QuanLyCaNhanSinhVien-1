@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FDangKyTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDangKyTaiKhoan.Designer.cs">
+      <DependentUpon>FDangKyTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="FDSMonHoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FDangKyTaiKhoan.resx">
+      <DependentUpon>FDangKyTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FDSMonHoc.resx">
       <DependentUpon>FDSMonHoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +199,10 @@
     <ProjectReference Include="..\QuanLyCaNhanSinhVien_DTO\QuanLyCaNhanSinhVien_DTO.csproj">
       <Project>{5f448fe7-6b17-46c8-a7a7-44890f9ba299}</Project>
       <Name>QuanLyCaNhanSinhVien_DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaoTaiKhoan_WFC\WFCTaoTaiKhoan.csproj">
+      <Project>{1B262EAC-8655-4673-911E-CF3F190F96BD}</Project>
+      <Name>WFCTaoTaiKhoan</Name>
     </ProjectReference>
     <ProjectReference Include="..\WFCTableList\WFCTableList.csproj">
       <Project>{8342315B-F7E2-42DD-8197-41B22A5AE945}</Project>

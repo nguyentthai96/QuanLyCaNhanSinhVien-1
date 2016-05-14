@@ -17,6 +17,7 @@ namespace WFAQuanLyCaNhanSinhVien
         public FThemSinhVien()
         {
             InitializeComponent();
+            button1.Enabled = false;
         }
         CSinhVien_DTO sv;
         public FThemSinhVien(CSinhVien_DTO sv)
@@ -49,6 +50,13 @@ namespace WFAQuanLyCaNhanSinhVien
             if (new CSinhVien_BLL().themSinhVien(sv))
             {
                 MessageBox.Show("Thêm Thành công.");
+                #region Tạo account để sử dụng
+                FDangKyTaiKhoan frmDangKyTaiKhoan = new FDangKyTaiKhoan(sv.StrMaSV);
+                frmDangKyTaiKhoan.StartPosition = FormStartPosition.CenterParent;
+                frmDangKyTaiKhoan.ShowDialog();
+                
+                #endregion
+                
                 this.Close();
             }
             else

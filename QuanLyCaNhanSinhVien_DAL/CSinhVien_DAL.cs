@@ -49,7 +49,7 @@ namespace QuanLyCaNhanSinhVien_DAL
 
         public bool themSinhVien(CSinhVien_DTO sv)
         {
-            string strThemSV = string.Format("insert into SinhVien values('{0}', N'{1}', '{2}', '{3}', N'{4}', N'{5}')",
+            string strThemSV = string.Format("insert into SinhVien values('{0}', N'{1}', '{2}', '{3}', N'{4}', N'{5}','')",
                     sv.StrMaSV, sv.StrHoTen, sv.BGioiTinh?1:0, sv.DtmNgaySinh.ToShortDateString(),sv.StrDiaChi,sv.StrCacThongTin);
 
             string error="";

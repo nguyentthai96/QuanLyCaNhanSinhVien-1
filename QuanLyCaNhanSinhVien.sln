@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyCaNhanSinhVien_BLL", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFCTableList", "WFCTableList\WFCTableList.csproj", "{8342315B-F7E2-42DD-8197-41B22A5AE945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFCTaoTaiKhoan", "TaoTaiKhoan_WFC\WFCTaoTaiKhoan.csproj", "{1B262EAC-8655-4673-911E-CF3F190F96BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8342315B-F7E2-42DD-8197-41B22A5AE945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8342315B-F7E2-42DD-8197-41B22A5AE945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8342315B-F7E2-42DD-8197-41B22A5AE945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B262EAC-8655-4673-911E-CF3F190F96BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B262EAC-8655-4673-911E-CF3F190F96BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B262EAC-8655-4673-911E-CF3F190F96BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B262EAC-8655-4673-911E-CF3F190F96BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
