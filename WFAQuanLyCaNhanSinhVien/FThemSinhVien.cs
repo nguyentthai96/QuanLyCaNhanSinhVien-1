@@ -7,32 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuanLyCaNhanSinhVien_DTO;
 using QuanLyCaNhanSinhVien_BLL;
 
 namespace WFAQuanLyCaNhanSinhVien
 {
     public partial class FThemSinhVien : Form
     {
+        private string strMaSV;
         public FThemSinhVien()
         {
             InitializeComponent();
             button1.Enabled = false;
         }
-        CSinhVien_DTO sv;
-        public FThemSinhVien(CSinhVien_DTO sv)
+        public FThemSinhVien(string strMaSV)
         {
             InitializeComponent();
-            this.sv = sv;
+            this.strMaSV = strMaSV;
             txtMaSinhVien.Enabled = false;
             btnThem.Enabled = false;
 
-            txtMaSinhVien.Text = sv.StrMaSV;
-            txtHoTen.Text = sv.StrHoTen;
-            txtDiaChi.Text = sv.StrDiaChi;
-            txtThongTinKhac.Text = sv.StrCacThongTin;
-            dtmpNgaySinh.Value = sv.DtmNgaySinh;
-            if (sv.BGioiTinh)
+            txtMaSinhVien.Text = strMaSV;
+            DataTable tb = new DataTable();
+            tb = CSinhVien_BLL.loadSinhVienInfor(strMaSV);
+            txtHoTen.Text = tb.Rows[0]["HoTen"].ToString();
+            txtDiaChi.Text = tb.Rows[0]["DiaChi"].ToString();
+            txtThongTinKhac.Text = tb.Rows[0]["CacThongTinKhac"].ToString();
+            dtmpNgaySinh.Value = DateTime.Parse(tb.Rows[0]["NgaySinh"].ToString());
+            if (tb.Rows[0]["GioiTinh"].ToString()=="True")
             {
                 rdoNam.Checked = true;
                 rdoNu.Checked = false;
@@ -46,11 +47,11 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            CSinhVien_DTO sv = new CSinhVien_DTO(txtMaSinhVien.Text, txtHoTen.Text,rdoNam.Checked,dtmpNgaySinh.Value.Date,txtDiaChi.Text,txtThongTinKhac.Text);
-            if (new CSinhVien_BLL().themSinhVien(sv))
+            this.strMaSV = txtMaSinhVien.Text;
+            if (CSinhVien_BLL.themSinhVien(strMaSV, txtHoTen.Text, rdoNam.Checked, dtmpNgaySinh.Value.Date, txtDiaChi.Text, txtThongTinKhac.Text))
             {
                 #region Tạo account để sử dụng
-                FDangKyTaiKhoan frmDangKyTaiKhoan = new FDangKyTaiKhoan(sv.StrMaSV);
+                FDangKyTaiKhoan frmDangKyTaiKhoan = new FDangKyTaiKhoan(strMaSV);
                 frmDangKyTaiKhoan.StartPosition = FormStartPosition.CenterParent;
                 frmDangKyTaiKhoan.ShowDialog();
                 
@@ -76,8 +77,7 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            sv = new CSinhVien_DTO(txtMaSinhVien.Text, txtHoTen.Text, rdoNam.Checked, dtmpNgaySinh.Value.Date, txtDiaChi.Text, txtThongTinKhac.Text);
-            if (new CSinhVien_BLL().suaSinhVien(sv))
+            if (CSinhVien_BLL.suaSinhVien(strMaSV, txtHoTen.Text, rdoNam.Checked, dtmpNgaySinh.Value.Date, txtDiaChi.Text, txtThongTinKhac.Text))
             {
                 MessageBox.Show("Sửa Thành công.");
                 this.Close();

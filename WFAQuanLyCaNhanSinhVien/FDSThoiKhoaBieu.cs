@@ -1,6 +1,5 @@
 ﻿using QuanLyCaNhanSinhVien_BLL;
 using QuanLyCaNhanSinhVien_DAL;
-using QuanLyCaNhanSinhVien_DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +15,8 @@ namespace WFAQuanLyCaNhanSinhVien
     public partial class FDSThoiKhoaBieu : Form
     {
         private string strMaSV;
-        CHoatDong_DTO lichSelect;
+        DataTable lichSelect;
+        DataTable listHoatDong;
         int iThuSelect;
         public FDSThoiKhoaBieu()
         {
@@ -38,9 +38,8 @@ namespace WFAQuanLyCaNhanSinhVien
         }
         private bool loadLichHocThu(int iThu)
         {
-            List<CHoatDong_DTO> list;
-            list=new CHoatDong_BLL().loadLichHocThu(strMaSV,iThu);
-            if (list==null)
+            listHoatDong=CHoatDong_BLL.loadLichHocThu(strMaSV,iThu);
+            if (listHoatDong==null)
             {
                 return false;
             }
@@ -51,7 +50,7 @@ namespace WFAQuanLyCaNhanSinhVien
             tabControl.Size = this.Size;
             dtgv.Size = tabControl.Size;
             tabPage.Controls.Add(dtgv);
-            dtgv.DataSource = list;
+            dtgv.DataSource = listHoatDong;
             columDesignDtgv(ref dtgv);
             dtgv.ContextMenuStrip = cmsThoiKhoaBieu;
             dtgv.ReadOnly = true;
@@ -112,7 +111,7 @@ namespace WFAQuanLyCaNhanSinhVien
             if (diaResult == DialogResult.No)
             {
                 DataGridView dtgv = (sender as DataGridView);
-                List<CHoatDong_DTO> list;
+ 
                 List<string> thuTuan = new List<string> { "Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7" };
                 int iThu = thuTuan.IndexOf(tabControl.SelectedTab.Text) + 1;
                 list = new CHoatDong_BLL().loadLichHocThu(strMaSV, iThu);
@@ -130,7 +129,7 @@ namespace WFAQuanLyCaNhanSinhVien
         }
         private void xóaHoạtĐộngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new CHoatDong_BLL().xoaLichHocThu(strMaSV,iThuSelect,lichSelect);
+            CHoatDong_BLL.xoaLichHocThu(strMaSV,iThuSelect,lichSelect);
             ///Load lai du liệu tại tabPage
             /// 
             tabControl.TabPages.Clear();

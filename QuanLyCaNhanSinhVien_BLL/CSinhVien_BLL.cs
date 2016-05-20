@@ -1,28 +1,38 @@
 ﻿using System;
-using QuanLyCaNhanSinhVien_DTO;
+using System.Data;
 using QuanLyCaNhanSinhVien_DAL;
 
 namespace QuanLyCaNhanSinhVien_BLL
 {
     public class CSinhVien_BLL
     {
-        public CSinhVien_BLL()
+        private static CDataProvider_DAL dataProvider;
+        public static string loadTenSinhVien(string strMaSV)
         {
+            dataProvider = new CDataProvider_DAL();
+            string strSelectHoTen = string.Format("select HoTen from SinhVien where MaSV='{0}'", strMaSV);
+            string strHoTenSV = "";
+            DataTable tb= dataProvider.getDataTableExcuteQuery("tbTenSinhVien", strSelectHoTen);
+            strHoTenSV=tb.Rows[0]["HoTen"].ToString();
+            return strHoTenSV;
         }
 
-        public bool themSinhVien(CSinhVien_DTO sv)
+        public static DataTable loadSinhVienInfor(string strMaSV)
         {
-            return new  CSinhVien_DAL().themSinhVien(sv);
+            DataTable tb;
+            string strSelectHoTen = string.Format("select * from SinhVien where MaSV='{0}'", strMaSV);
+            tb = dataProvider.getDataTableExcuteQuery("tbTenSinhVien", strSelectHoTen);
+            return tb;
         }
 
-        public bool suaSinhVien(CSinhVien_DTO sv)
+        public static bool themSinhVien(string text1, string text2, bool @checked, DateTime date, string text3, string text4)
         {
-            return new CSinhVien_DAL().suaSinhVien(sv);
+            throw new NotImplementedException();
         }
 
-        public CSinhVien_DTO loadTTSV(string strMaSV)
+        public static bool suaSinhVien(string strMaSV, string text1, bool @checked, DateTime date, string text2, string text3)
         {
-            return new CSinhVien_DAL().loadThongTinSV(strMaSV);
+            throw new NotImplementedException();
         }
     }
 }

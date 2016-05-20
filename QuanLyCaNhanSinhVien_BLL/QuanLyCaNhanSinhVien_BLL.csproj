@@ -41,9 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAccountSinhVien_BLL.cs" />
-    <Compile Include="CDiemSo_BLL.cs" />
     <Compile Include="CHoatDong_BLL.cs" />
-    <Compile Include="CHocKy_BLL.cs" />
     <Compile Include="CMonHoc_BLL.cs" />
     <Compile Include="CSinhVien_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,10 +50,6 @@
     <ProjectReference Include="..\QuanLyCaNhanSinhVien_DAL\QuanLyCaNhanSinhVien_DAL.csproj">
       <Project>{1936C66C-D974-4FCF-AB60-FFFF1A5C65D4}</Project>
       <Name>QuanLyCaNhanSinhVien_DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QuanLyCaNhanSinhVien_DTO\QuanLyCaNhanSinhVien_DTO.csproj">
-      <Project>{5F448FE7-6B17-46C8-A7A7-44890F9BA299}</Project>
-      <Name>QuanLyCaNhanSinhVien_DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

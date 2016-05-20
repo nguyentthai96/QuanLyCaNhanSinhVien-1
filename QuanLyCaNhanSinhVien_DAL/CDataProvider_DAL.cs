@@ -58,7 +58,8 @@ namespace QuanLyCaNhanSinhVien_DAL
         {
             conn = this.connectDataBase();
             foreach (SqlParameter p in param)
-                cmd.Parameters.Add(p);
+                cmd.Parameters.Add(p);         
+            cmd.CommandType = CommandType.Text;
             cmd.CommandText = strSqlCommand;
             bool flag = false;
             try
@@ -76,7 +77,29 @@ namespace QuanLyCaNhanSinhVien_DAL
             }
             return flag;
         }
-
+        public bool excuteNonQuery(string strSqlCommand, CommandType cmdType, ref string error, params SqlParameter[] param)
+        {
+            conn = this.connectDataBase();
+            foreach (SqlParameter p in param)
+                cmd.Parameters.Add(p);
+            cmd.CommandType = cmdType;
+            cmd.CommandText = strSqlCommand;
+            bool flag = false;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            finally
+            {
+                DisconnectDataBase();
+            }
+            return flag;
+        }
         public int executeScalar(CommandType cmdType, string strSqlCommandText, ref string error, params SqlParameter[] param)
         {
             conn = this.connectDataBase();

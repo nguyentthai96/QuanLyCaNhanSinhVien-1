@@ -1,7 +1,7 @@
 ﻿using QuanLyCaNhanSinhVien_DAL;
-using QuanLyCaNhanSinhVien_DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +10,24 @@ namespace QuanLyCaNhanSinhVien_BLL
 {
     public class CAccountSinhVien_BLL
     {
-        public CSinhVien_DTO loadAccountSV(string strMaSV, string strMatKhau)
+        private static CDataProvider_DAL dataProvider;
+
+        public static bool checkAccount(string strTaiKhoan, string strMatKhau)
         {
-            CAccountSinhVien_DTO ac = new CAccountSinhVien_DTO(strMaSV, strMatKhau);
-            int iCountAcc;
-            iCountAcc = new CAccountSinhVien_DAL().loadAccountSV(ac);
-            CSinhVien_DTO sv = new CSinhVien_DTO();
-            sv = new CSinhVien_DAL().loadThongTinSV(strMaSV);
-            return sv;
+            dataProvider = new CDataProvider_DAL();
+            string strCountCmd = string.Format("select count(*) from AccountSinhVien where MaSV='{0}' and PasswordSV=N'{1}'", strTaiKhoan, strMatKhau);
+            string strError = "";
+            int iCountAccount = (int)dataProvider.executeScalar(CommandType.Text, strCountCmd, ref strError);
+            if (iCountAccount == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public bool addAcountSinhVien(string strTaiKhoan, string strMatKhau)
+        public static bool addAcountSinhVien(string strTaiKhoan, string strMatKhau)
         {
-            return new CAccountSinhVien_DAL().addAcountSinhVien(strTaiKhoan, strMatKhau);
+            throw new NotImplementedException();
         }
     }
 }

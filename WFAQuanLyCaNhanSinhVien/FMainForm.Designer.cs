@@ -221,8 +221,8 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.Menu;
             this.Name = "FMainForm";
-            this.Text = "Quản lý Cá nhân Sinh viên";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Quản lý Cá nhân Sinh viên";
             this.Load += new System.EventHandler(this.FMainForm_Load);
             this.SizeChanged += new System.EventHandler(this.FMainForm_SizeChanged);
             this.Menu.ResumeLayout(false);

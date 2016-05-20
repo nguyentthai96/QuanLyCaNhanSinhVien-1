@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyCaNhanSinhVien_BLL;
-using QuanLyCaNhanSinhVien_DTO;
 
 namespace WFAQuanLyCaNhanSinhVien
 {
     public partial class FMainForm : Form
     {
-        CSinhVien_DTO sv;
+        private string strMaSV;
+        bool bDangNhapThanhCong=false;
         public FMainForm()
         {
             InitializeComponent();
@@ -58,29 +58,34 @@ namespace WFAQuanLyCaNhanSinhVien
         FTongQuan frmTongQuan;
         private void tmiDangNhap_Click(object sender, EventArgs e)
         {
-           sv= new CAccountSinhVien_BLL().loadAccountSV(ttxtTaiKhoan.Text, ttxtMatKhau.Text);
-            if (sv==null)
+           bool bCheck=CAccountSinhVien_BLL.checkAccount(ttxtTaiKhoan.Text, ttxtMatKhau.Text);
+            if (bCheck==false)
             {
                 MessageBox.Show("Đăng nhập thất bại.");
+                bDangNhapThanhCong = false;
                 return;
             }
             frmEmpty.Dispose();
-            frmEmpty.Close();
             try
             {
                 this.ActiveMdiChild.Close();
             }
-            catch (Exception) { }
+            catch (Exception){}
 
-            lblTenSV.Text = sv.StrHoTen;
+            bDangNhapThanhCong = true;
+            this.strMaSV = ttxtTaiKhoan.Text;
+            //Tim ten sinh vien
+            lblTenSV.Text=CSinhVien_BLL.loadTenSinhVien(strMaSV);
+
             lblTenSV.Location=new Point(this.Size.Width-75- lblTenSV.Width,lblTenSV.Location.Y);
-            frmTongQuan = new FTongQuan(sv.StrMaSV);
+            
+            frmTongQuan = new FTongQuan(strMaSV);
             frmTongQuan.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             frmTongQuan.WindowState = FormWindowState.Maximized;
             frmTongQuan.MdiParent = this;
             frmTongQuan.Show();
 
-           
+
             tmiDangNhap.Visible = false;
             đăngKýToolStripMenuItem.Visible = false;
 
@@ -99,14 +104,15 @@ namespace WFAQuanLyCaNhanSinhVien
         {
             ttxtTaiKhoan.Focus();
             ttxtTaiKhoan.SelectAll();
-            if (sv!=null && this.ActiveMdiChild!=frmTongQuan)
+            if (bDangNhapThanhCong)//TODO a:&& this.ActiveMdiChild!=frmTongQuan)
             {
                 try
                 {
                     this.ActiveMdiChild.Close();
                 }
                 catch (Exception) { }
-                frmTongQuan = new FTongQuan(sv.StrMaSV);
+                
+                frmTongQuan = new FTongQuan(strMaSV);
                 frmTongQuan.FormBorderStyle = FormBorderStyle.FixedToolWindow;
                 frmTongQuan.WindowState = FormWindowState.Maximized;
                 frmTongQuan.MdiParent = this;
@@ -139,10 +145,10 @@ namespace WFAQuanLyCaNhanSinhVien
 
             tmiDangXuatTongQuan.Visible = false;
             /////TODO Thu dang nhap nhanh
-            //ttxtTaiKhoan.Text = "14110182";
-            //ttxtMatKhau.Text = "ntt";
-            //tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
-           
+            ttxtTaiKhoan.Text = "1";
+            ttxtMatKhau.Text = "1";
+            tmiDangNhap_Click(this.tmiDangNhap, new EventArgs());
+
         }
 
         private void FMainForm_SizeChanged(object sender, EventArgs e)
@@ -153,18 +159,18 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void sửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //TODO a:
+            //FThemSinhVien frmSuaThongTin = new FThemSinhVien(strMaSV);
+            //frmSuaThongTin.StartPosition = FormStartPosition.CenterParent;
+            //frmSuaThongTin.ShowDialog();
 
-            FThemSinhVien frmSuaThongTin = new FThemSinhVien(sv);
-            frmSuaThongTin.StartPosition = FormStartPosition.CenterParent;
-            frmSuaThongTin.ShowDialog();
-            sv = new CSinhVien_BLL().loadTTSV(sv.StrMaSV) ;
-            lblTenSV.Text = sv.StrHoTen;
+            lblTenSV.Text = CSinhVien_BLL.loadTenSinhVien(strMaSV);
             FMainForm_SizeChanged(this, new EventArgs());
         }
 
         private void tmiDiemSoHT_Click(object sender, EventArgs e)
         {
-            if(sv==null)
+            if(bDangNhapThanhCong==false)
             {
                 MessageBox.Show("Bạn chưa đăng nhập");
                 return;
@@ -175,13 +181,13 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-
-            FXemDiem frmDiem = new FXemDiem(sv.StrMaSV);
-            frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            frmDiem.WindowState = FormWindowState.Maximized;
-            frmDiem.MdiParent = this;
-            frmDiem.StartPosition = FormStartPosition.CenterParent;
-            frmDiem.Show();
+            //TODO a:
+            //FXemDiem frmDiem = new FXemDiem(strMaSV);
+            //frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            //frmDiem.WindowState = FormWindowState.Maximized;
+            //frmDiem.MdiParent = this;
+            //frmDiem.StartPosition = FormStartPosition.CenterParent;
+            //frmDiem.Show();
         }
 
         private void tmiThoat_Click(object sender, EventArgs e)
@@ -207,8 +213,8 @@ namespace WFAQuanLyCaNhanSinhVien
             lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
             frmEmpty.Controls.Add(lblChaoMung);
 
-            frmTongQuan.Close();
-            sv = null;
+            //ToDo a: frmTongQuan.Close();
+            bDangNhapThanhCong = false;
 
             tmiDangXuatTongQuan.Visible = false;
             tmiDangNhap.Visible = true;
@@ -220,7 +226,7 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiSuKienHoatDong_Click(object sender, EventArgs e)
 {
-            if (sv == null)
+            if (bDangNhapThanhCong==false)
             {
                 MessageBox.Show("Bạn chưa đăng nhập");
                 return;
@@ -231,12 +237,13 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-            FDSThoiKhoaBieu dsThoiKhoaBieu;
-            dsThoiKhoaBieu = new FDSThoiKhoaBieu(sv.StrMaSV);
-            dsThoiKhoaBieu.MdiParent = this;
-            dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
-            dsThoiKhoaBieu.Show();
-           
+            //TODO a:
+            //FDSThoiKhoaBieu dsThoiKhoaBieu;
+            //dsThoiKhoaBieu = new FDSThoiKhoaBieu(strMaSV);
+            //dsThoiKhoaBieu.MdiParent = this;
+            //dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
+            //dsThoiKhoaBieu.Show();
+
         }
 
         private void tmiDangXuat_Click(object sender, EventArgs e)
@@ -246,7 +253,7 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-            sv = null;
+            bDangNhapThanhCong = false;
             frmEmpty = new Form();
             frmEmpty.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             frmEmpty.WindowState = FormWindowState.Maximized;
@@ -263,7 +270,7 @@ namespace WFAQuanLyCaNhanSinhVien
             lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
             frmEmpty.Controls.Add(lblChaoMung);
 
-            frmTongQuan.Close();
+            //ToDo a: frmTongQuan.Close();
 
             tmiDangXuatTongQuan.Visible = false;
             đăngKýToolStripMenuItem.Visible = true;
@@ -280,17 +287,19 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-            FReportDiem fr = new FReportDiem(sv);
-            fr.WindowState = FormWindowState.Maximized;
-            fr.MdiParent = this;
-            fr.Show();
+            //TODO a:
+            //FReportDiem fr = new FReportDiem(strMaSV);
+            //fr.WindowState = FormWindowState.Maximized;
+            //fr.MdiParent = this;
+            //fr.Show();
         }
 
         private void đăngKýToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FThemSinhVien frmThemSinhVien= new FThemSinhVien();
-            frmThemSinhVien.StartPosition = FormStartPosition.CenterParent;
-            frmThemSinhVien.ShowDialog();
+            //TODO a:
+            //FThemSinhVien frmThemSinhVien= new FThemSinhVien();
+            //frmThemSinhVien.StartPosition = FormStartPosition.CenterParent;
+            //frmThemSinhVien.ShowDialog();
         }
     }
 }

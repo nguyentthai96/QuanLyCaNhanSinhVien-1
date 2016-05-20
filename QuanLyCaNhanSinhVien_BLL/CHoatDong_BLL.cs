@@ -1,70 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using QuanLyCaNhanSinhVien_DTO;
 using QuanLyCaNhanSinhVien_DAL;
+using System.Data.SqlClient;
 
 namespace QuanLyCaNhanSinhVien_BLL
 {
     public class CHoatDong_BLL
     {
-        public CHoatDong_BLL()
+        private static CDataProvider_DAL dataProvider;
+        public static DataTable loadSuKienTrongNgay(string strMaSV)
         {
+            dataProvider = new CDataProvider_DAL();
+            DateTime date = DateTime.Now;
+            DataTable dtb = new DataTable();
+            string strSelectCmd = string.Format("exec [dbo].[spHoatDongTuongLai] @MaSV={0}, @ThoiGianHienTai='{1}'", strMaSV, date.ToShortDateString());
+            dtb = dataProvider.getDataTableExcuteQuery("LichHocNgay", strSelectCmd);
+            return dtb;
         }
 
-        public List<CHoatDong_DTO> loadSuKienTrongNgay(string strMaSV)
+        public static DataTable loadLichHocTrongNgay(string strMaSV)
         {
-            return new CHoatDong_DAL().loadSuKienTrongNgay(strMaSV);
-        }
-        public List<CHoatDong_DTO> loadLichHocTrongNgay(string strMaSV)
-        {
-            return new CHoatDong_DAL().loadLichHocTrongNgay(strMaSV);
-        }
-
-        public int countHoatDong()
-        {
-            return new CHoatDong_DAL().countHoatDong();
+            dataProvider = new CDataProvider_DAL();
+            int iThu = DateTime.Now.DayOfWeek.GetHashCode()+1;
+            DataTable dtb = new DataTable();
+            string strSelectCmd = string.Format("exec [dbo].[spLichHocTrongNgay] @MaSV={0}, @Thu={1}",strMaSV,iThu);
+            dtb= dataProvider.getDataTableExcuteQuery("LichHocNgay",strSelectCmd);
+            return dtb;
         }
 
-        public bool themHoatDong(string strMaSV ,CHoatDong_DTO hoatDong)
+        public static int countHoatDong()
         {
-            if( new CHoatDong_DAL().themHoatDong( hoatDong)==false)
-            {
-                return false;
-            }
-            if (new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV, hoatDong.DtmGioBD.DayOfWeek.GetHashCode(), hoatDong.StrMaHD)==false)
-                {
-                return false;
-            }
-            return true;
+            dataProvider = new CDataProvider_DAL();
+            string strCountHoatDong = "select count(*) from HoatDong";
+            string strErr = "";
+            int iCount=(int)dataProvider.executeScalar(CommandType.Text,strCountHoatDong,ref strErr);
+            return iCount;
         }
 
-        public List<CHoatDong_DTO> loadLichHocThu(string strMaSV, int iThu)
+        public static bool themLichHoc(string strMaSV, int iThu, string strMaHD, string strMaMon, bool bChinhKhoa, DateTime dtmGioBD, DateTime dtmGioKT, string strGhiChu, int MauSac)
         {
-            return new CHoatDong_DAL().loadLichHocThu( strMaSV, iThu);
-        }
-
-        public bool themLichHoc(CHoatDong_DTO hd, int iThu, string strMaSV)
-        {
-            bool b1 = new CHoatDong_DAL().themHoatDongLichHoc(hd);
-            if (b1 == false)
-            {
-                return false;
-            }
-
-                bool b2= new CThoiKhoaBieu_DAL().themHoatDongLichHoc(strMaSV,iThu, hd.StrMaHD);
-            if (b2 == false)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool xoaLichHocThu(string strMaSV, int iThuSelect, CHoatDong_DTO lichSelect)
-        {
-            ///Chỉ set active off không xóa dữ liệu
-            ///
-            if(new CThoiKhoaBieu_DAL().xoaLichHocThu(strMaSV, iThuSelect, lichSelect.StrMaHD)==false)
+            dataProvider = new CDataProvider_DAL();
+            string strAddCmd = string.Format("spAddLichHoc");
+            string strErr = "";
+            dataProvider.excuteNonQuery(strAddCmd, CommandType.StoredProcedure,ref strErr,
+                new SqlParameter("@MaSV", strMaSV), 
+                new SqlParameter("@Thu", iThu), 
+                new SqlParameter("@MaHD", strMaHD),
+                new SqlParameter("@MaMon", strMaMon),
+                new SqlParameter("@ChinhKhoa", bChinhKhoa), 
+                new SqlParameter("@GioBD", dtmGioBD), 
+                new SqlParameter("@GioKT", dtmGioKT),
+                new SqlParameter("@GhiChuHD", strGhiChu), 
+                new SqlParameter("@MauMucDo", MauSac)
+                );
+            if (strErr!="")
             {
                 return false;
             }

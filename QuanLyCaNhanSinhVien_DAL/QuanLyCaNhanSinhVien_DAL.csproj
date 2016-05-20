@@ -42,20 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CDataProvider_DAL.cs" />
-    <Compile Include="CAccountSinhVien_DAL.cs" />
-    <Compile Include="CDiemSo_DAL.cs" />
-    <Compile Include="CHoatDong_DAL.cs" />
-    <Compile Include="CHocKy_DAL.cs" />
-    <Compile Include="CMonHoc_DAL.cs" />
-    <Compile Include="CSinhVien_DAL.cs" />
-    <Compile Include="CThoiKhoaBieu_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QuanLyCaNhanSinhVien_DTO\QuanLyCaNhanSinhVien_DTO.csproj">
-      <Project>{5f448fe7-6b17-46c8-a7a7-44890f9ba299}</Project>
-      <Name>QuanLyCaNhanSinhVien_DTO</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
