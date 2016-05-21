@@ -23,7 +23,7 @@ namespace WFAQuanLyCaNhanSinhVien
         }
         private void ucDangKy_GhiDuLieu_TaoTaiKhoan(UCDangKyTK sender, EventArgs e)
         {
-            if(CAccountSinhVien_BLL.addAcountSinhVien(sender.StrTaiKhoan,sender.StrMatKhau))
+            if(CAccountSinhVien_BLL.addAccountSinhVien(sender.StrTaiKhoan,sender.StrMatKhau))
             {
                 MessageBox.Show("Đăng ký thành công bạn có thể đăng nhập bằng account này.");
                 this.Close();

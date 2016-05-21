@@ -102,9 +102,7 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiTongQuan_Click(object sender, EventArgs e)
         {
-            ttxtTaiKhoan.Focus();
-            ttxtTaiKhoan.SelectAll();
-            if (bDangNhapThanhCong)//TODO a:&& this.ActiveMdiChild!=frmTongQuan)
+            if (bDangNhapThanhCong && this.ActiveMdiChild!=frmTongQuan)
             {
                 try
                 {
@@ -118,7 +116,10 @@ namespace WFAQuanLyCaNhanSinhVien
                 frmTongQuan.MdiParent = this;
                 frmTongQuan.Show();
                 tmiTongQuan.DropDown.Hide();
+                return;
             }
+            ttxtTaiKhoan.Focus();
+            ttxtTaiKhoan.SelectAll();
         }
 
         Form frmEmpty;
@@ -159,10 +160,10 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void sửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO a:
-            //FThemSinhVien frmSuaThongTin = new FThemSinhVien(strMaSV);
-            //frmSuaThongTin.StartPosition = FormStartPosition.CenterParent;
-            //frmSuaThongTin.ShowDialog();
+
+            FThemSinhVien frmSuaThongTin = new FThemSinhVien(strMaSV);
+            frmSuaThongTin.StartPosition = FormStartPosition.CenterParent;
+            frmSuaThongTin.ShowDialog();
 
             lblTenSV.Text = CSinhVien_BLL.loadTenSinhVien(strMaSV);
             FMainForm_SizeChanged(this, new EventArgs());
@@ -181,13 +182,13 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-            //TODO a:
-            //FXemDiem frmDiem = new FXemDiem(strMaSV);
-            //frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            //frmDiem.WindowState = FormWindowState.Maximized;
-            //frmDiem.MdiParent = this;
-            //frmDiem.StartPosition = FormStartPosition.CenterParent;
-            //frmDiem.Show();
+
+            FXemDiem frmDiem = new FXemDiem(strMaSV);
+            frmDiem.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            frmDiem.WindowState = FormWindowState.Maximized;
+            frmDiem.MdiParent = this;
+            frmDiem.StartPosition = FormStartPosition.CenterParent;
+            frmDiem.Show();
         }
 
         private void tmiThoat_Click(object sender, EventArgs e)
@@ -213,7 +214,7 @@ namespace WFAQuanLyCaNhanSinhVien
             lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
             frmEmpty.Controls.Add(lblChaoMung);
 
-            //ToDo a: frmTongQuan.Close();
+            frmTongQuan.Close();
             bDangNhapThanhCong = false;
 
             tmiDangXuatTongQuan.Visible = false;
@@ -237,12 +238,11 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-            //TODO a:
-            //FDSThoiKhoaBieu dsThoiKhoaBieu;
-            //dsThoiKhoaBieu = new FDSThoiKhoaBieu(strMaSV);
-            //dsThoiKhoaBieu.MdiParent = this;
-            //dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
-            //dsThoiKhoaBieu.Show();
+            FDSThoiKhoaBieu dsThoiKhoaBieu;
+            dsThoiKhoaBieu = new FDSThoiKhoaBieu(strMaSV);
+            dsThoiKhoaBieu.MdiParent = this;
+            dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
+            dsThoiKhoaBieu.Show();
 
         }
 
@@ -296,10 +296,9 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void đăngKýToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO a:
-            //FThemSinhVien frmThemSinhVien= new FThemSinhVien();
-            //frmThemSinhVien.StartPosition = FormStartPosition.CenterParent;
-            //frmThemSinhVien.ShowDialog();
+            FThemSinhVien frmThemSinhVien = new FThemSinhVien();
+            frmThemSinhVien.StartPosition = FormStartPosition.CenterParent;
+            frmThemSinhVien.ShowDialog();
         }
     }
 }

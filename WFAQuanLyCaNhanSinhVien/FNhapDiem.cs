@@ -1,5 +1,4 @@
 ﻿using QuanLyCaNhanSinhVien_BLL;
-using QuanLyCaNhanSinhVien_DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,15 +32,14 @@ namespace WFAQuanLyCaNhanSinhVien
             this.strMaHK = strMaHK;
         }
 
-        List<CMonHoc_DTO> monHocs;
+        DataTable monHocs;
         private void loadComboBox()
         {
-            monHocs = new List<CMonHoc_DTO>();
             monHocs = new CMonHoc_BLL().loadDSMonSV(strMaSV);
 
             cmbMonHoc.DataSource = monHocs;
-            cmbMonHoc.DisplayMember = "StrTenMon";
-            cmbMonHoc.ValueMember = "StrMaMon";
+            cmbMonHoc.DisplayMember = "TenMon";
+            cmbMonHoc.ValueMember = "MaMon";
         }
        
         private void btnThem_Click(object sender, EventArgs e)
@@ -59,12 +57,11 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private bool themDiem(string strMaHK)
         {
-            int iCountDiem = new CDiemSo_BLL().countDiem(strMaSV);
-            CDiemSo_DTO diem;
+            int iCountDiem = CDiemSo_BLL.countDiem(strMaSV);
+           
             try
             {
-                diem = new CDiemSo_DTO(cmbMonHoc.SelectedValue.ToString(), strMaSV,strMaHK, "Diem" + iCountDiem, float.Parse(txtSoDiem.Text), float.Parse(txtSoDiem.Text), dtmpNgayDiem.Value.Date);
-                if (new CDiemSo_BLL().themDiem(diem) == false)
+                if (CDiemSo_BLL.themDiem(cmbMonHoc.SelectedValue.ToString(), strMaSV, strMaHK, "Diem" + iCountDiem, float.Parse(txtSoDiem.Text), float.Parse(txtHeSo.Text), dtmpNgayDiem.Value.Date) == false)
                 {
                     return false;
                 }

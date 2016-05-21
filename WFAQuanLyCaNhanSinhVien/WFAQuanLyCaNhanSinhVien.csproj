@@ -50,11 +50,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FDangKyTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDangKyTaiKhoan.Designer.cs">
+      <DependentUpon>FDangKyTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FDSThoiKhoaBieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDSThoiKhoaBieu.Designer.cs">
+      <DependentUpon>FDSThoiKhoaBieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FMainForm.Designer.cs">
       <DependentUpon>FMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FNhapDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FNhapDiem.Designer.cs">
+      <DependentUpon>FNhapDiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FSuaDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FSuaDiem.Designer.cs">
+      <DependentUpon>FSuaDiem.cs</DependentUpon>
     </Compile>
     <Compile Include="FThemMonThoiKhoaBieu.cs">
       <SubType>Form</SubType>
@@ -62,22 +86,61 @@
     <Compile Include="FThemMonThoiKhoaBieu.Designer.cs">
       <DependentUpon>FThemMonThoiKhoaBieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FThemSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FThemSinhVien.Designer.cs">
+      <DependentUpon>FThemSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FThemSuKien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FThemSuKien.Designer.cs">
+      <DependentUpon>FThemSuKien.cs</DependentUpon>
+    </Compile>
     <Compile Include="FTongQuan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FTongQuan.Designer.cs">
       <DependentUpon>FTongQuan.cs</DependentUpon>
     </Compile>
+    <Compile Include="FXemDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FXemDiem.Designer.cs">
+      <DependentUpon>FXemDiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FDangKyTaiKhoan.resx">
+      <DependentUpon>FDangKyTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDSThoiKhoaBieu.resx">
+      <DependentUpon>FDSThoiKhoaBieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FMainForm.resx">
       <DependentUpon>FMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FNhapDiem.resx">
+      <DependentUpon>FNhapDiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSuaDiem.resx">
+      <DependentUpon>FSuaDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FThemMonThoiKhoaBieu.resx">
       <DependentUpon>FThemMonThoiKhoaBieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FThemSinhVien.resx">
+      <DependentUpon>FThemSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FThemSuKien.resx">
+      <DependentUpon>FThemSuKien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FTongQuan.resx">
       <DependentUpon>FTongQuan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FXemDiem.resx">
+      <DependentUpon>FXemDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +150,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ReportDiem.rdlc" />
     <None Include="ClassDiagram1.cd" />
@@ -120,6 +184,12 @@
       <Project>{8342315B-F7E2-42DD-8197-41B22A5AE945}</Project>
       <Name>WFCTableList</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\student-female-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\student-male-512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

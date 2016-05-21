@@ -49,7 +49,7 @@ namespace WFCTableList
             lblTime.Text = strTimeLable;
             lblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height) + index * heightContext);
             lblTime.Size = new System.Drawing.Size((int)(0.22 * this.Width), heightContext);
-            lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)(0.07 * heightContext), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", (float)((lblTime.Width / 8.0)), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTime.AutoSize = false;
 
             Label lblContext;
@@ -181,7 +181,7 @@ namespace WFCTableList
             {
                 TLable.LblTime.Location = new System.Drawing.Point(0, (int)(0.18 * this.Height) + index * heightContext);
                 TLable.LblTime.Size = new System.Drawing.Size((int)(0.22 * this.Width), heightContext);
-                TLable.LblTime.Font = new Font("", (float)(0.07 * heightContext));
+                TLable.LblTime.Font = new Font("", (float)( (TLable.LblTime.Width/8.0)));
 
 
                 TLable.LblContext.Location = new System.Drawing.Point((int)(0.22 * this.Width), (int)(0.18 * this.Height) + index * heightContext);

@@ -1,5 +1,4 @@
 ﻿using QuanLyCaNhanSinhVien_BLL;
-using QuanLyCaNhanSinhVien_DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +14,7 @@ namespace WFAQuanLyCaNhanSinhVien
     public partial class FXemDiem : Form
     {
         private string strMaSV;
-        private CDiemSo_DTO diem;
+        private DataTable diem;
         public FXemDiem(string strMaSV)
         {
             InitializeComponent();
@@ -41,7 +40,7 @@ namespace WFAQuanLyCaNhanSinhVien
         public List<Tuple<string, string, string,string >> lists;
         private bool loadComboBox()
         {
-            lists= new CMonHoc_BLL().loadDSMonHKDiem(strMaSV);
+            lists= CMonHoc_BLL.loadDSMonHKDiem(strMaSV);
 
             if (lists == null)
             {
@@ -64,7 +63,7 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private bool loadDSDiemMon(string strMaMon)
         {
-            dgvDiemSo.DataSource = new CDiemSo_BLL().loadDSDiemMon(strMaMon, this.strMaSV);
+            dgvDiemSo.DataSource = CDiemSo_BLL.loadDSDiemMon(strMaMon, this.strMaSV);
             return true;
         }
 
@@ -86,9 +85,8 @@ namespace WFAQuanLyCaNhanSinhVien
         private void tmiEdit_Click(object sender, EventArgs e)
         {
             int index = dgvDiemSo.CurrentRow.Index;
-            diem = new CDiemSo_DTO(dgvDiemSo.Rows[index].Cells["StrMaMon"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaSV"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaHK"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaDiem"].Value.ToString(),
-                    (float)dgvDiemSo.Rows[index].Cells["FSoDiem"].Value, (float)dgvDiemSo.Rows[index].Cells["FHeSo"].Value,DateTime.Parse(dgvDiemSo.Rows[index].Cells["DtmNgayDiem"].Value.ToString()));
-            FSuaDiem frm = new FSuaDiem(diem);
+            FSuaDiem frm = new FSuaDiem(dgvDiemSo.Rows[index].Cells["StrMaMon"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaSV"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaHK"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaDiem"].Value.ToString(),
+                    (float)dgvDiemSo.Rows[index].Cells["FSoDiem"].Value, (float)dgvDiemSo.Rows[index].Cells["FHeSo"].Value, DateTime.Parse(dgvDiemSo.Rows[index].Cells["DtmNgayDiem"].Value.ToString()));
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
             loadDSDiemMon(cmbMonHoc.SelectedValue.ToString());
@@ -96,19 +94,25 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void dgvDiemSo_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dgvDiemSo.ClearSelection();
-            dgvDiemSo.Rows[e.RowIndex].Selected = true;
-            dgvDiemSo.CurrentCell = dgvDiemSo[0, e.RowIndex];
-            dgvDiemSo.Refresh();   
+            try
+            {
+                dgvDiemSo.ClearSelection();
+                dgvDiemSo.Rows[e.RowIndex].Selected = true;
+                dgvDiemSo.CurrentCell = dgvDiemSo[0, e.RowIndex];
+                dgvDiemSo.Refresh();
+            }
+            catch (Exception)
+            {
+            }
+              
         }
 
         private void tmiRemove_Click(object sender, EventArgs e)
         {
             int index = dgvDiemSo.CurrentRow.Index;
-            diem = new CDiemSo_DTO(dgvDiemSo.Rows[index].Cells["StrMaMon"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaSV"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaHK"].Value.ToString(), dgvDiemSo.Rows[index].Cells["StrMaDiem"].Value.ToString(),
-                    (float)dgvDiemSo.Rows[index].Cells["FSoDiem"].Value, (float)dgvDiemSo.Rows[index].Cells["FHeSo"].Value, DateTime.Parse(dgvDiemSo.Rows[index].Cells["DtmNgayDiem"].Value.ToString()));
-            
-            if (new CDiemSo_BLL().removeDiem(diem))
+
+
+            if (CDiemSo_BLL.removeDiem(dgvDiemSo.Rows[index].Cells["MaMon"].Value.ToString(), dgvDiemSo.Rows[index].Cells["MaSV"].Value.ToString(), dgvDiemSo.Rows[index].Cells["MaHK"].Value.ToString(), dgvDiemSo.Rows[index].Cells["MaDiem"].Value.ToString()))
             {
                 MessageBox.Show("Xóa thành công");
                 loadDSDiemMon(cmbMonHoc.SelectedValue.ToString());

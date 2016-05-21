@@ -25,9 +25,17 @@ namespace QuanLyCaNhanSinhVien_BLL
             return true;
         }
 
-        public static bool addAcountSinhVien(string strTaiKhoan, string strMatKhau)
+        public static bool addAccountSinhVien(string strTaiKhoan, string strMatKhau)
         {
-            throw new NotImplementedException();
+            dataProvider = new CDataProvider_DAL();
+            string strAddSinhVien = string.Format("insert into AccountSinhVien values ('{0}',N'{1}')", strTaiKhoan, strMatKhau);
+            string strErr = "";
+            dataProvider.excuteNonQuery(strAddSinhVien, ref strErr);
+            if (strErr != "")
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

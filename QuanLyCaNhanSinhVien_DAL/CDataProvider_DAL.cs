@@ -54,35 +54,14 @@ namespace QuanLyCaNhanSinhVien_DAL
             return dtb;
         }
 
-        public bool excuteNonQuery(string strSqlCommand, ref string error, params SqlParameter[] param)
-        {
-            conn = this.connectDataBase();
-            foreach (SqlParameter p in param)
-                cmd.Parameters.Add(p);         
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = strSqlCommand;
-            bool flag = false;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                flag = true;
-            }
-            catch (Exception ex)
-            {
-                error = ex.Message;
-            }
-            finally
-            {
-                DisconnectDataBase();
-            }
-            return flag;
-        }
-        public bool excuteNonQuery(string strSqlCommand, CommandType cmdType, ref string error, params SqlParameter[] param)
+        public bool excuteNonQuery(string strSqlCommand, ref string error, CommandType cmdType=CommandType.Text, params SqlParameter[] param)
         {
             conn = this.connectDataBase();
             foreach (SqlParameter p in param)
                 cmd.Parameters.Add(p);
+
             cmd.CommandType = cmdType;
+
             cmd.CommandText = strSqlCommand;
             bool flag = false;
             try

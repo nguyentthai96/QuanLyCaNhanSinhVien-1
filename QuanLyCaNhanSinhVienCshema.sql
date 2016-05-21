@@ -36,7 +36,7 @@ create table SinhVien
 	NgaySinh date,
 	DiaChi nvarchar(50),
 	CacThongTin nvarchar(100),
-	HinhAnh image,
+	HinhAnh varbinary,
 	primary key (MaSV)
 )
 

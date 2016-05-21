@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyCaNhanSinhVien_BLL;
-using QuanLyCaNhanSinhVien_DTO;
 
 namespace WFAQuanLyCaNhanSinhVien
 {
@@ -27,23 +26,23 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void FThemSuKien_Load(object sender, EventArgs e)
         {
-            cmbMonHoc.DataSource = new CMonHoc_BLL().loadDSMon();
+            cmbMonHoc.DataSource = CMonHoc_BLL.loadDSMon();
             cmbMonHoc.ValueMember = "MaMon";
             cmbMonHoc.DisplayMember = "TenMon";
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            int iCountHD = new CHoatDong_BLL().countHoatDong();
-            CHoatDong_DTO hoatDong = new CHoatDong_DTO("HD" + iCountHD, cmbMonHoc.SelectedValue.ToString(), false,
-                    DateTime.Parse(dtmpNgayBatDau.Value.ToShortDateString() +" "+ dtmpThoiGianBatDau.Value.ToShortTimeString()),
-                    DateTime.Parse( dtmpNgayDen.Value.ToShortDateString() +" "+ dtmpThoiGianDen.Value.ToShortTimeString()), txtMoTa.Text);
-            if (hoatDong.DtmGioBD>hoatDong.DtmGioKT)
+            int iCountHD = CHoatDong_BLL.countHoatDong();
+               DateTime DtmGioBD = DateTime.Parse(dtmpNgayBatDau.Value.ToShortDateString() + " " + dtmpThoiGianBatDau.Value.ToShortTimeString());
+            DateTime DtmGioKT = DateTime.Parse(dtmpNgayDen.Value.ToShortDateString() + " " + dtmpThoiGianDen.Value.ToShortTimeString());
+         
+            if (DtmGioBD> DtmGioKT)
             {
                 MessageBox.Show("Thời gian bạn nhập không hợp lý.");
                 return;
             }
-            if (new CHoatDong_BLL().themHoatDong(strMaSV,hoatDong))
+            if (CHoatDong_BLL.themHoatDong(strMaSV, "HD" + iCountHD, cmbMonHoc.SelectedValue.ToString(), false, DtmGioBD, DtmGioKT, txtMoTa.Text))
             {
                 MessageBox.Show("Thêm thành công.");
                 this.Close();

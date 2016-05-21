@@ -132,17 +132,16 @@ namespace WFAQuanLyCaNhanSinhVien
 
         private void tmiThemSuKien_Click(object sender, EventArgs e)
         {
-            //ToDo
-            //FThemSuKien frm = new FThemSuKien(strMaSV);
-            //frm.StartPosition = FormStartPosition.CenterScreen;
-            //frm.ShowDialog();
-            //suKiens = new CHoatDong_BLL().loadSuKienTrongNgay(strMaSV);
-            //indexSuKien = -1;
-            //if (suKiens.Count!=0)
-            //{
-            //    lblNext_Click(this.lblNext, new EventArgs());
-            //    lblPrev.Enabled = false;
-            //}
+            FThemSuKien frm = new FThemSuKien(strMaSV);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.ShowDialog();
+            suKiens = CHoatDong_BLL.loadSuKienTrongNgay(strMaSV);
+            indexSuKien = -1;
+            if (suKiens.Rows.Count != 0)
+            {
+                lblNext_Click(this.lblNext, new EventArgs());
+                lblPrev.Enabled = false;
+            }
         }
 
         private void lblNext_Click(object sender, EventArgs e)
@@ -196,15 +195,14 @@ namespace WFAQuanLyCaNhanSinhVien
             linesTableUC.lists = listSuKienUC;
             linesTableUC.loadUserControl();
         }
-        //Todo
-        //FDSThoiKhoaBieu dsThoiKhoaBieu;
+        
+        FDSThoiKhoaBieu dsThoiKhoaBieu;
         private void tmiThoiKhoaBieu_Click(object sender, EventArgs e)
         {
-            //ToDo
-            //dsThoiKhoaBieu = new FDSThoiKhoaBieu(strMaSV);
-            //dsThoiKhoaBieu.MdiParent= this.ParentForm;
-            //dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
-            //dsThoiKhoaBieu.Show();
+            dsThoiKhoaBieu = new FDSThoiKhoaBieu(strMaSV);
+            dsThoiKhoaBieu.MdiParent = this.ParentForm;
+            dsThoiKhoaBieu.WindowState = FormWindowState.Maximized;
+            dsThoiKhoaBieu.Show();
             this.Close();
         }
     }

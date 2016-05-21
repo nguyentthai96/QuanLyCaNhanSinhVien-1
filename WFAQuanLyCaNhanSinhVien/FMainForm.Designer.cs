@@ -158,7 +158,7 @@
             // 
             this.tmiSuKienHoatDong.Name = "tmiSuKienHoatDong";
             this.tmiSuKienHoatDong.Size = new System.Drawing.Size(153, 22);
-            this.tmiSuKienHoatDong.Text = "Thòi khóa biểu";
+            this.tmiSuKienHoatDong.Text = "Thời khóa biểu";
             this.tmiSuKienHoatDong.Click += new System.EventHandler(this.tmiSuKienHoatDong_Click);
             // 
             // tmiBaoCao
