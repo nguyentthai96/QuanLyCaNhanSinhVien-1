@@ -47,9 +47,70 @@ begin
 	insert into ThoiKhoaBieu values (@MaSV, @Thu, @MaHD);
 end
 
+go
+
+USE QuanLyCaNhanSinhVien
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[reportDiem]
+AS
+SELECT TenMon ,SoDiem, HeSo
+FROM DiemSo, DanhSachMon, MonHoc
+WHERE DiemSo.MaMon=DanhSachMon.MaMon and
+		DiemSo.MaHK=DanhSachMon.MaHK and
+		DiemSo.MaSV=DanhSachMon.MaSV and
+		MonHoc.MaMon=DanhSachMon.MaMon
 
 go
 
 use [QuanLyCaNhanSinhVien]
 go
-EXEC [dbo].[spLichHocTrongNgay] @MaSV=1, @Thu=2
+--alter 
+create procedure [dbo].[spreportDiem]
+(
+@MaSV varchar(10),
+@MaMon varchar(10),
+@MaHK varchar(10)
+)
+as
+return
+SELECT TenMon ,SoDiem, HeSo
+FROM DiemSo, DanhSachMon, MonHoc
+WHERE	DiemSo.MaSV=@MaSV and DiemSo.MaMon=@MaMon and DanhSachMon.MaHK=@MaHK and
+		DiemSo.MaMon=DanhSachMon.MaMon and
+		DiemSo.MaHK=DanhSachMon.MaHK and
+		DiemSo.MaSV=DanhSachMon.MaSV and
+		MonHoc.MaMon=DanhSachMon.MaMon
+
+
+
+
+go
+
+
+USE QuanLyCaNhanSinhVien
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[reportDiems]
+AS
+	execute fnreportDiem )
+
+go
+
+use [QuanLyCaNhanSinhVien]
+go
+execute [dbo].[fnreportDiem] ('1',HK4, M1)
+go
+select HinhAnh from SinhVien

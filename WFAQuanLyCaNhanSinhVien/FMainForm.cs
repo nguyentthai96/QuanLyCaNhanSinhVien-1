@@ -270,7 +270,7 @@ namespace WFAQuanLyCaNhanSinhVien
             lblChaoMung.TextAlign = ContentAlignment.MiddleCenter;
             frmEmpty.Controls.Add(lblChaoMung);
 
-            //ToDo a: frmTongQuan.Close();
+            frmTongQuan.Close();
 
             tmiDangXuatTongQuan.Visible = false;
             đăngKýToolStripMenuItem.Visible = true;
@@ -287,11 +287,11 @@ namespace WFAQuanLyCaNhanSinhVien
                 this.ActiveMdiChild.Close();
             }
             catch (Exception) { }
-            //TODO a:
-            //FReportDiem fr = new FReportDiem(strMaSV);
-            //fr.WindowState = FormWindowState.Maximized;
-            //fr.MdiParent = this;
-            //fr.Show();
+            
+            FReportDiem fr = new FReportDiem(strMaSV);
+            fr.WindowState = FormWindowState.Maximized;
+            fr.MdiParent = this;
+            fr.Show();
         }
 
         private void đăngKýToolStripMenuItem_Click(object sender, EventArgs e)

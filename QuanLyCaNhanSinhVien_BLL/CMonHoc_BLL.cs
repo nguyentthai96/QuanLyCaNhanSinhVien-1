@@ -49,5 +49,18 @@ namespace QuanLyCaNhanSinhVien_BLL
 
             return tbl;
         }
+
+        public static DataTable loadDSMonHK(string strMaSV, string strMaHK)
+        {
+            dataProvider = new CDataProvider_DAL();
+
+            string strSelectMon =
+                    @"select MonHoc.MaMon, MonHoc.TenMon from DanhSachMon inner join MonHoc on DanhSachMon.MaMon=MonHoc.MaMon where DanhSachMon.MaSV='" + strMaSV + "' and DanhSachMon.MaHK='"+strMaHK+"'";
+            DataTable tbl = new DataTable();
+            tbl = dataProvider.getDataTableExcuteQuery("tbMonHocTheoHK", strSelectMon);
+
+            
+            return tbl;
+        }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="CAccountSinhVien_BLL.cs" />
     <Compile Include="CDiemSo_BLL.cs" />
     <Compile Include="CHoatDong_BLL.cs" />
+    <Compile Include="CHocKy_BLL.cs" />
     <Compile Include="CMonHoc_BLL.cs" />
     <Compile Include="CSinhVien_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

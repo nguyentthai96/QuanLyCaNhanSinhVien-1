@@ -8,7 +8,17 @@ namespace QuanLyCaNhanSinhVien_BLL
     public class CDiemSo_BLL
     {
         private static CDataProvider_DAL dataProvider;
-        public static DataTable loadDSDiemMon(string strMaMon, string strMaSV)
+        public static DataTable loadDSDiemMon(string strMaSV, string strMaMon, string strMaHK)
+        {
+            string strSelectDiem = string.Format("SELECT TenMon ,SoDiem, HeSo FROM DiemSo, DanhSachMon, MonHoc WHERE DiemSo.MaSV = '{0}' and DiemSo.MaMon = '{1}' and DanhSachMon.MaHK = '{2}' and DiemSo.MaMon = DanhSachMon.MaMon and DiemSo.MaHK = DanhSachMon.MaHK and DiemSo.MaSV = DanhSachMon.MaSV and MonHoc.MaMon = DanhSachMon.MaMon",
+                strMaSV, strMaMon,strMaHK);
+
+            DataTable dtb = new DataTable();
+            dtb = new CDataProvider_DAL().getDataTableExcuteQuery("tbDiemSo", strSelectDiem);
+
+            return dtb;
+        }
+        public static DataTable loadDSDiemMon(string strMaSV, string strMaMon)
         {
             string strSelectDiem = "select * from DiemSo where MaMon='" + strMaMon + "' and MaSV='" + strMaSV + "'";
 
@@ -17,7 +27,6 @@ namespace QuanLyCaNhanSinhVien_BLL
 
             return dtb;
         }
-
         public static bool removeDiem(string strMaMon, string strMaSV, string strMaHK, string strMaDiem)
         {
             dataProvider = new CDataProvider_DAL();
